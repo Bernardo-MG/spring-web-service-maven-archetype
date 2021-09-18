@@ -23,7 +23,7 @@
    <!-- ********************************************** -->
 
    <groupId>com.bernardomg.maven.archetypes</groupId>
-   <artifactId>library-archetype</artifactId>
+   <artifactId>spring-web-service-maven-archetype</artifactId>
    <version>1.0.0-SNAPSHOT</version>
    <packaging>maven-archetype</packaging>
 
@@ -201,8 +201,8 @@
       <!-- ================= MAVEN SITE ================= -->
       <!-- ============================================== -->
       <site.skin.version>2.2.4</site.skin.version>
-      <mavenURL>https://mvnrepository.com/artifact/com.bernardomg.maven.archetypes/library-archetype</mavenURL>
-      <githubArtifactURL><![CDATA[https://github.com/Bernardo-MG?tab=packages&amp;repo_name=library-archetype]]></githubArtifactURL>
+      <mavenURL>https://mvnrepository.com/artifact/com.bernardomg.maven.archetypes/spring-web-service-maven-archetype</mavenURL>
+      <githubArtifactURL><![CDATA[https://github.com/Bernardo-MG?tab=packages&amp;repo_name=spring-web-service-maven-archetype]]></githubArtifactURL>
    </properties>
 
    <!-- ********************************************** -->

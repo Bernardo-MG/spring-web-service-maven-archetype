@@ -8,7 +8,7 @@ After running all the tests artifacts will be published into this repository, bu
 
 The Archetype will do little more than take care of configuration, setting up the POM and the Maven project is most of its job, and so it will include few files not related to this. Some useful things such as a readme, a gitignore and a license files are included, but the initial code will consists just of a few placeholder classes.
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.bernardomg.maven.archetypes/library-archetype.svg)][maven-repo]
+[![Maven Central](https://img.shields.io/maven-central/v/com.bernardomg.maven.archetypes/spring-web-service-maven-archetype.svg)][maven-repo]
 
 [![Release docs](https://img.shields.io/badge/docs-release-blue.svg)][site-release]
 [![Development docs](https://img.shields.io/badge/docs-develop-blue.svg)][site-develop]
@@ -65,14 +65,14 @@ The archetype can be installed with the following Maven coordinates:
 
 ```
 Group ID: com.bernardomg.maven.archetypes
-Artifact ID: library-archetype
+Artifact ID: spring-web-service-maven-archetype
 Version: (Check POM or badges)
 ```
 
 For example, to use it through command line type the following:
 
 ```
-mvn archetype:generate -DarchetypeGroupId=com.bernardomg.maven.archetypes -DarchetypeArtifactId=library-archetype -DarchetypeVersion=[version]
+mvn archetype:generate -DarchetypeGroupId=com.bernardomg.maven.archetypes -DarchetypeArtifactId=spring-web-service-maven-archetype -DarchetypeVersion=[version]
 ```
 
 If using an IDE check its documentation to find out how to use Maven Archetypes, and how to add these to the local repository.
@@ -113,7 +113,7 @@ If you wish to fork or modify the code, visit the [GitHub project page][scm], wh
 ## License
 The project has been released under the [MIT License][license].
 
-[maven-repo]: https://mvnrepository.com/artifact/com.bernardomg.maven.archetypes/library-archetype
+[maven-repo]: https://mvnrepository.com/artifact/com.bernardomg.maven.archetypes/spring-web-service-maven-archetype
 [junit]: https://junit.org
 [issues]: https://github.com/Bernardo-MG/spring-web-service-maven-archetype/issues
 [license]: https://www.opensource.org/licenses/mit-license.php
