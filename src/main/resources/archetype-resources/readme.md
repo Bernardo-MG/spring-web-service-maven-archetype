@@ -55,15 +55,13 @@ The verify phase is required, otherwise some of the reports won't be generated.
 
 ${symbol_pound}${symbol_pound} Usage
 
-The generated war can be run thanks to Spring Boot:
+To run the project locally use the following Maven command:
 
 ```
-java -jar project.war
+mvn spring-boot:run
 ```
 
-Just change the name for your WAR's name.
-
-Afterwards the project will be available at http://localhost:8080
+Then you can query at http://localhost:8080/entity.
 
 ${symbol_pound}${symbol_pound} Collaborate
 
