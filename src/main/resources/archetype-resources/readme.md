@@ -55,19 +55,15 @@ The verify phase is required, otherwise some of the reports won't be generated.
 
 ${symbol_pound}${symbol_pound} Usage
 
-The application is coded in Java, using Maven to manage the project.
-
-It is a Java library, meant to be included as a dependency on any project which may want to make use of it.
-
-${symbol_pound}${symbol_pound}${symbol_pound} Installing
-
-The recommended way to install the project is by setting it up as a dependency. To get the configuration information for this check  the [Maven Central Repository][maven-repo].
-
-It is always possible installing it by using the usual Maven command:
+The generated war can be run thanks to Spring Boot:
 
 ```
-$ mvn install
+java -jar project.war
 ```
+
+Just change the name for your WAR's name.
+
+Afterwards the project will be available at http://localhost:8080
 
 ${symbol_pound}${symbol_pound} Collaborate
 
