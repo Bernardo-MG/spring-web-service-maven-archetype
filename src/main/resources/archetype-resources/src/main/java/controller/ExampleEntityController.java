@@ -42,7 +42,7 @@ import ${package}.service.ExampleEntityService;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RestController
-@RequestMapping("/rest/entity")
+@RequestMapping("/entity")
 public class ExampleEntityController {
 
     /**
