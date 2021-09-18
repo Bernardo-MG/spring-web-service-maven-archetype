@@ -242,6 +242,7 @@
       <!-- ============================================== -->
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
+      <bytebuddy.version>1.11.13</bytebuddy.version>
       <guava.version>30.1.1-jre</guava.version>
       <h2.version>1.4.200</h2.version>
       <hamcrest.version>2.2</hamcrest.version>
@@ -252,12 +253,12 @@
       <jpa.version>2.2</jpa.version>
       <jsonpath.version>2.6.0</jsonpath.version>
       <junit.jupiter.version>5.7.2</junit.jupiter.version>
-      <liquibase.version>3.10.2</liquibase.version>
-      <log4j.version>2.13.3</log4j.version>
-      <mockito.version>3.11.2</mockito.version>
+      <liquibase.version>4.4.3</liquibase.version>
+      <log4j.version>2.14.1</log4j.version>
+      <mockito.version>3.12.4</mockito.version>
       <servlet.version>4.0.1</servlet.version>
       <slf4j.version>1.7.32</slf4j.version>
-      <spring.boot.version>2.5.3</spring.boot.version>
+      <spring.boot.version>2.5.4</spring.boot.version>
       <spring.data.train.version>2020.0.7</spring.data.train.version>
       <spring.version>5.3.9</spring.version>
       <!-- ============================================== -->
@@ -546,6 +547,12 @@
          <artifactId>javax.servlet-api</artifactId>
          <version>${servlet.version}</version>
          <scope>provided</scope>
+      </dependency>
+      <dependency>
+         <!-- Byte Buddy -->
+         <groupId>net.bytebuddy</groupId>
+         <artifactId>byte-buddy</artifactId>
+         <version>${bytebuddy.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->
