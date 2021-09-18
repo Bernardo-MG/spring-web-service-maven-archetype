@@ -22,11 +22,30 @@
  * SOFTWARE.
  */
 
-/**
- * Application root package.
- * <p>
- * This is where the main class is contained. All the subpackages will be
- * scanned by the Spring Boot application.
- */
+package ${package}.response;
 
-package ${package};
+/**
+ * Response to the frontend.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ * @param <T>
+ *            response content type
+ */
+public interface Response<T> {
+
+    /**
+     * Returns the response content.
+     * 
+     * @return the response content
+     */
+    public T getContent();
+
+    /**
+     * Returns the response status.
+     * 
+     * @return the response status
+     */
+    public ResponseStatus getStatus();
+
+}

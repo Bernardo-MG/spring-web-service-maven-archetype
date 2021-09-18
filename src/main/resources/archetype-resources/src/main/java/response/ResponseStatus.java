@@ -21,8 +21,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-/**
- * Provides placeholder integration tests.
- */
-package ${package}.test.integration;
 
+package ${package}.response;
+
+import com.fasterxml.jackson.annotation.JsonValue;
+
+/**
+ * Response status.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
+public enum ResponseStatus {
+
+    /**
+     * The request failed.
+     */
+    FAILURE,
+    /**
+     * The request was a success.
+     */
+    SUCCESS,
+    /**
+     * The request generated warnings.
+     */
+    WARNING;
+
+    @JsonValue
+    public final String getValue() {
+        return toString().toLowerCase();
+    }
+
+}

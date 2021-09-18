@@ -22,39 +22,10 @@
  * SOFTWARE.
  */
 
-package ${package}.test.unit;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
-
-import ${package}.Greeter;
-
 /**
- * Unit tests for {@link Greeter}.
+ * Model classes.
  * <p>
- * This is just a placeholder test for the unit tests suite.
- *
- * @author ${developerName}
- *
+ * These represent the main sets of data which the application works with.
  */
-@RunWith(JUnitPlatform.class)
-public final class TestGreeter {
 
-    /**
-     * Default constructor.
-     */
-    public TestGreeter() {
-        super();
-    }
-
-    /**
-     * Tests that the {@code Greeter} returns a greeting.
-     */
-    @Test
-    public final void sayHello() {
-        Assertions.assertEquals("Hello World!", new Greeter().sayHello());
-    }
-
-}
+package ${package}.model;

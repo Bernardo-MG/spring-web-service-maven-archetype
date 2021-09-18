@@ -22,11 +22,35 @@
  * SOFTWARE.
  */
 
-/**
- * Application root package.
- * <p>
- * This is where the main class is contained. All the subpackages will be
- * scanned by the Spring Boot application.
- */
+package ${package}.persistence.repository;
 
-package ${package};
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import ${package}.model.PersistentExampleEntity;
+
+/**
+ * Spring-JPA repository for {@link PersistentExampleEntity}.
+ * <p>
+ * This is a simple repository just to allow the endpoints querying the entities
+ * they are asked for.
+ *
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
+public interface ExampleEntityRepository
+        extends JpaRepository<PersistentExampleEntity, Integer> {
+
+    /**
+     * Returns all entities with a partial match to the name.
+     * 
+     * @param name
+     *            name for searching
+     * @param page
+     *            pagination to apply
+     * @return all entities at least partially matching the name
+     */
+    public Page<PersistentExampleEntity> findByNameContaining(final String name,
+            final Pageable page);
+
+}

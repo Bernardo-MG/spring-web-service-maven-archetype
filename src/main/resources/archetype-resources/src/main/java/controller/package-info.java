@@ -22,39 +22,8 @@
  * SOFTWARE.
  */
 
-package ${package}.test.integration;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
-
-import ${package}.Greeter;
-
 /**
- * Integration tests for {@link Greeter}.
- * <p>
- * This is actually a placeholder test for the integration tests suite.
- *
- * @author ${developerName}
- *
+ * Controller classes.
  */
-@RunWith(JUnitPlatform.class)
-public final class ITGreeter {
 
-    /**
-     * Default constructor.
-     */
-    public ITGreeter() {
-        super();
-    }
-
-    /**
-     * Tests that the {@code Greeter} returns a greeting.
-     */
-    @Test
-    public final void sayHello() {
-        Assertions.assertEquals("Hello World!", new Greeter().sayHello());
-    }
-
-}
+package ${package}.controller;

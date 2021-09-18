@@ -22,34 +22,48 @@
  * SOFTWARE.
  */
 
-package ${package};
+package ${package}.model;
+
+import java.io.Serializable;
 
 /**
- * Greeter class.
- * <p>
- * This is just a placeholder class which may be safely removed.
- * <p>
- * Pay attention to the fact that this is used on the placeholder tests too
+ * A simple entity to be used as an example.
  *
- * @author ${developerName}
+ * @author Bernardo Mart&iacute;nez Garrido
  */
-
-public final class Greeter {
-
-    /**
-     * Default constructor.
-     */
-    public Greeter() {
-        super();
-    }
+public interface ExampleEntity extends Serializable {
 
     /**
-     * Returns a greeting.
+     * Returns the identifier assigned to this entity.
+     * <p>
+     * If no identifier has been assigned yet, then the value is expected to be
+     * {@code null} or lower than zero.
      *
-     * @return a greeting
+     * @return the entity's identifier
      */
-    public String sayHello() {
-        return "Hello World!";
-    }
+    public Integer getId();
+
+    /**
+     * Returns the name of the entity.
+     *
+     * @return the entity's name
+     */
+    public String getName();
+
+    /**
+     * Sets the identifier assigned to this entity.
+     *
+     * @param identifier
+     *            the identifier for the entity
+     */
+    public void setId(final Integer identifier);
+
+    /**
+     * Changes the name of the entity.
+     *
+     * @param name
+     *            the name to set on the entity
+     */
+    public void setName(final String name);
 
 }

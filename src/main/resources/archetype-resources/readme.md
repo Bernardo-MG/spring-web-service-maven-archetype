@@ -1,7 +1,7 @@
 #set( $symbol_pound = '#' )
 ${symbol_pound} ${projectName}
 
-This is a basic Maven-based Java project created with the use of the [Library Maven Archetype](https://github.com/Bernardo-MG/spring-web-service-maven-archetype). It will ease the development of new libraries, setting it up for CI through the use of free services: [Github](https://github.com/), [Github Workflow](https://docs.github.com/en/actions/configuring-and-managing-workflows), [Github Packages](https://github.com/features/packages) and [OSS Sonatype](https://oss.sonatype.org/).
+This is a basic Spring web service project created with the use of the [Spring Web Service Maven Archetype](https://github.com/Bernardo-MG/spring-web-service-maven-archetype). It will ease the development of new web services, setting it up for CI through the use of free services: [Github](https://github.com/), [Github Workflow](https://docs.github.com/en/actions/configuring-and-managing-workflows), [Github Packages](https://github.com/features/packages) and [OSS Sonatype](https://oss.sonatype.org/).
 
 Before beginning with the new project there are a few things which should be edited:
 
@@ -55,19 +55,13 @@ The verify phase is required, otherwise some of the reports won't be generated.
 
 ${symbol_pound}${symbol_pound} Usage
 
-The application is coded in Java, using Maven to manage the project.
-
-It is a Java library, meant to be included as a dependency on any project which may want to make use of it.
-
-${symbol_pound}${symbol_pound}${symbol_pound} Installing
-
-The recommended way to install the project is by setting it up as a dependency. To get the configuration information for this check  the [Maven Central Repository][maven-repo].
-
-It is always possible installing it by using the usual Maven command:
+To run the project locally use the following Maven command:
 
 ```
-$ mvn install
+mvn spring-boot:run
 ```
+
+Then you can query at http://localhost:8080/entity.
 
 ${symbol_pound}${symbol_pound} Collaborate
 
