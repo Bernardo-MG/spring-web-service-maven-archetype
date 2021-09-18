@@ -249,18 +249,18 @@
       <hibernate.validator.version>5.4.3.Final</hibernate.validator.version>
       <hibernate.version>5.5.6.Final</hibernate.version>
       <hikari.version>3.4.5</hikari.version>
-      <jackson.version>2.12.4</jackson.version>
+      <jackson.version>2.12.5</jackson.version>
       <jpa.version>2.2</jpa.version>
       <jsonpath.version>2.6.0</jsonpath.version>
-      <junit.jupiter.version>5.7.2</junit.jupiter.version>
+      <junit.jupiter.version>5.8.0</junit.jupiter.version>
       <liquibase.version>4.4.3</liquibase.version>
       <log4j.version>2.14.1</log4j.version>
       <mockito.version>3.12.4</mockito.version>
       <servlet.version>4.0.1</servlet.version>
       <slf4j.version>1.7.32</slf4j.version>
       <spring.boot.version>2.5.4</spring.boot.version>
-      <spring.data.train.version>2020.0.7</spring.data.train.version>
-      <spring.version>5.3.9</spring.version>
+      <spring.data.train.version>2021.0.4</spring.data.train.version>
+      <spring.version>5.3.10</spring.version>
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
       <!-- ============================================== -->
