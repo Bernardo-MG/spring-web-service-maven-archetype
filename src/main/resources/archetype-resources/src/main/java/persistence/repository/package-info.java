@@ -21,12 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 /**
- * Application root package.
+ * Repositories.
  * <p>
- * This is where the main class is contained. All the subpackages will be
- * scanned by the Spring Boot application.
+ * Similar to a DAO, a repository is a pattern which allows handling the
+ * persistence layer as if it was a collection, where entities are stored and
+ * read from.
  */
 
-package ${package};
+package ${package}.persistence.repository;

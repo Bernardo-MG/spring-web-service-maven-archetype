@@ -23,10 +23,9 @@
  */
 
 /**
- * Application root package.
+ * Model classes.
  * <p>
- * This is where the main class is contained. All the subpackages will be
- * scanned by the Spring Boot application.
+ * These represent the main sets of data which the application works with.
  */
 
-package ${package};
+package ${package}.model;

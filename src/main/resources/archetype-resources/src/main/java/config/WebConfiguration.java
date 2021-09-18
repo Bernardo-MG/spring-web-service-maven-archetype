@@ -22,11 +22,31 @@
  * SOFTWARE.
  */
 
-/**
- * Application root package.
- * <p>
- * This is where the main class is contained. All the subpackages will be
- * scanned by the Spring Boot application.
- */
+package ${package}.config;
 
-package ${package};
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+/**
+ * Web configuration.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
+@Configuration
+public class WebConfiguration implements WebMvcConfigurer {
+
+    /**
+     * Default constructor.
+     */
+    public WebConfiguration() {
+        super();
+    }
+
+    @Override
+    public void addCorsMappings(final CorsRegistry registry) {
+        registry.addMapping("/**");
+    }
+
+}
