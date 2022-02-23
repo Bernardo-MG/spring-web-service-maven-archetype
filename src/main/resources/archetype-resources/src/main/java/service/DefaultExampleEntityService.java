@@ -24,7 +24,7 @@
 
 package ${package}.service;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +34,7 @@ import ${package}.persistence.repository.ExampleEntityRepository;
 
 /**
  * Default implementation of the example entity service.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
@@ -57,7 +57,7 @@ public class DefaultExampleEntityService implements ExampleEntityService {
             final ExampleEntityRepository repository) {
         super();
 
-        entityRepository = checkNotNull(repository,
+        entityRepository = Objects.requireNonNull(repository,
                 "Received a null pointer as repository");
     }
 

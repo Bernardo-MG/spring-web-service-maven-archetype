@@ -10,5 +10,16 @@
             First release of the archetype.
          </action>
       </release>
+      <release version="1.0.1" date="2022-02-23" description="Updated dependencies">
+         <action dev="bmg" type="remove">
+            Removed Guava.
+         </action>
+         <action dev="bmg" type="add">
+            Added Lombok.
+         </action>
+         <action dev="bmg" type="update">
+            Updated dependencies.
+         </action>
+      </release>
    </body>
 </document>
