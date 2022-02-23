@@ -27,7 +27,7 @@
    <version>1.1.0-SNAPSHOT</version>
    <packaging>maven-archetype</packaging>
 
-   <name>Library Maven Archetype</name>
+   <name>Spring Web Service Maven Archetype</name>
    <description>A Maven Archetype to ease the creation of Spring web services.</description>
    <url>https://www.github.com/bernardo-mg/spring-web-service-maven-archetype</url>
    <inceptionYear>2015</inceptionYear>
@@ -177,7 +177,7 @@
       <!-- ============================================== -->
       <!-- =============== MANIFEST DATA ================ -->
       <!-- ============================================== -->
-      <manifest.name>com/bernardomg/archetype/library</manifest.name>
+      <manifest.name>com/bernardomg/archetype/springws</manifest.name>
       <!-- ============================================== -->
       <!-- ================= MAVEN SITE ================= -->
       <!-- ============================================== -->
