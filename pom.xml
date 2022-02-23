@@ -28,7 +28,7 @@
    <packaging>maven-archetype</packaging>
 
    <name>Library Maven Archetype</name>
-   <description>A Maven Archetype to ease the creation of new Java libraries.</description>
+   <description>A Maven Archetype to ease the creation of Spring web services.</description>
    <url>https://www.github.com/bernardo-mg/spring-web-service-maven-archetype</url>
    <inceptionYear>2015</inceptionYear>
 

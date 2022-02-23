@@ -8,7 +8,7 @@
          <defaultValue>Basic Maven Project</defaultValue>
       </requiredProperty>
       <requiredProperty key="projectDescription">
-         <defaultValue>A Maven project created from the library archetype.</defaultValue>
+         <defaultValue>A Maven project created from the Spring web service archetype.</defaultValue>
       </requiredProperty>
       <requiredProperty key="currentYear">
          <defaultValue>2020</defaultValue>
