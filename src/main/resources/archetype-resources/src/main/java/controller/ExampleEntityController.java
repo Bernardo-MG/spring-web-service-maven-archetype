@@ -24,7 +24,7 @@
 
 package ${package}.controller;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,7 +38,7 @@ import ${package}.service.ExampleEntityService;
 
 /**
  * Rest controller for the example entities.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RestController
@@ -52,7 +52,7 @@ public class ExampleEntityController {
 
     /**
      * Constructs a controller with the specified dependencies.
-     * 
+     *
      * @param service
      *            example entity service
      */
@@ -60,13 +60,13 @@ public class ExampleEntityController {
     public ExampleEntityController(final ExampleEntityService service) {
         super();
 
-        exampleEntityService = checkNotNull(service,
+        exampleEntityService = Objects.requireNonNull(service,
                 "Received a null pointer as service");
     }
 
     /**
      * Returns a collection of entities.
-     * 
+     *
      * @return a collection of entities
      */
     @GetMapping
