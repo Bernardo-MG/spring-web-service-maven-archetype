@@ -267,7 +267,7 @@
             <!-- Spring Data BOM -->
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-bom</artifactId>
-            <version>${spring.data.train.version}</version>
+            <version>${spring.data.version}</version>
             <type>pom</type>
             <scope>import</scope>
          </dependency>
