@@ -33,6 +33,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.bernardomg.example.test.controller.ResponseAdvice;
+
+import ${package}.controller.ResponseAdvice;
 import ${package}.controller.ExampleEntityController;
 import ${package}.model.DefaultExampleEntity;
 import ${package}.model.ExampleEntity;
@@ -67,6 +70,7 @@ public final class TestExampleEntityController {
     @BeforeEach
     public final void setUpMockContext() {
         mockMvc = MockMvcBuilders.standaloneSetup(getController())
+                .setControllerAdvice(ResponseAdvice.class)
                 .setCustomArgumentResolvers(
                         new PageableHandlerMethodArgumentResolver())
                 .alwaysExpect(MockMvcResultMatchers.status().isOk())
