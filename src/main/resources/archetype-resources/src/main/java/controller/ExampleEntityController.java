@@ -32,8 +32,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ${package}.model.ExampleEntity;
-import ${package}.response.DefaultResponse;
-import ${package}.response.Response;
 import ${package}.service.ExampleEntityService;
 
 /**
@@ -70,12 +68,8 @@ public class ExampleEntityController {
      * @return a collection of entities
      */
     @GetMapping
-    public Response<Iterable<? extends ExampleEntity>> read() {
-        final Iterable<? extends ExampleEntity> result;
-
-        result = exampleEntityService.getAllEntities();
-
-        return new DefaultResponse<>(result);
+    public Iterable<? extends ExampleEntity> read() {
+        return exampleEntityService.getAllEntities();
     }
 
 }
