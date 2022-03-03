@@ -14,7 +14,7 @@
  * the License.
  */
 
-package ${package}.unit.controller;
+package ${package}.test.unit.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,8 +32,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
-import com.bernardomg.example.test.controller.ResponseAdvice;
 
 import ${package}.controller.ResponseAdvice;
 import ${package}.controller.ExampleEntityController;
@@ -92,8 +90,11 @@ public final class TestExampleEntityController {
         result.andExpect(MockMvcResultMatchers.status().isOk());
 
         // The response model contains the expected attributes
-        result.andExpect(
-                MockMvcResultMatchers.jsonPath("$.content", Matchers.hasSize(3)));
+        result
+           .andExpect(MockMvcResultMatchers.jsonPath("$.status",
+               Matchers.equalToIgnoringCase("success")))
+           .andExpect(MockMvcResultMatchers.jsonPath("$.content",
+               Matchers.hasSize(3)));
     }
 
     /**

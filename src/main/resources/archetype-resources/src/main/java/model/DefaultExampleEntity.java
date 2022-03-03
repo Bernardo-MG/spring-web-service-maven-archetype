@@ -35,6 +35,11 @@ import lombok.Data;
 public class DefaultExampleEntity implements ExampleEntity {
 
     /**
+     * Serialization id.
+     */
+    private static final long serialVersionUID = 7194459697873216367L;
+
+    /**
      * Entity's ID.
      */
     private Integer           id               = -1;
