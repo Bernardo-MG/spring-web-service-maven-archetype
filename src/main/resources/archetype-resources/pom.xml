@@ -177,26 +177,26 @@
       <!-- ============================================== -->
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
-      <bytebuddy.version>1.11.13</bytebuddy.version>
+      <bytebuddy.version>1.12.10</bytebuddy.version>
       <caffeine.version>2.6.2</caffeine.version>
-      <h2.version>2.1.210</h2.version>
+      <h2.version>2.1.214</h2.version>
       <hibernate.validator.version>5.4.3.Final</hibernate.validator.version>
       <hibernate.version>5.5.6.Final</hibernate.version>
       <hikari.version>5.0.1</hikari.version>
       <hamcrest.version>2.2</hamcrest.version>
-      <jackson.version>2.13.1</jackson.version>
+      <jackson.version>2.13.3</jackson.version>
       <jpa.version>2.2</jpa.version>
-      <jsonpath.version>2.6.0</jsonpath.version>
+      <jsonpath.version>2.7.0</jsonpath.version>
       <junit.jupiter.version>5.8.2</junit.jupiter.version>
-      <liquibase.version>4.8.0</liquibase.version>
-      <log4j.version>2.17.1</log4j.version>
-      <lombok.version>1.18.22</lombok.version>
+      <liquibase.version>4.11.0</liquibase.version>
+      <log4j.version>2.17.2</log4j.version>
+      <lombok.version>1.18.24</lombok.version>
       <mockito.version>4.3.1</mockito.version>
       <servlet.version>4.0.1</servlet.version>
       <slf4j.version>1.7.36</slf4j.version>
-      <spring.boot.version>2.6.3</spring.boot.version>
-      <spring.data.version>2021.1.2</spring.data.version>
-      <spring.version>5.3.16</spring.version>
+      <spring.boot.version>2.7.0</spring.boot.version>
+      <spring.data.version>2021.2.0</spring.data.version>
+      <spring.version>5.3.20</spring.version>
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
       <!-- ============================================== -->
