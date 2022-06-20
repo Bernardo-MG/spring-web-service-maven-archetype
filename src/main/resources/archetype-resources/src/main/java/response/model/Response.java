@@ -22,34 +22,23 @@
  * SOFTWARE.
  */
 
-package ${package}.response;
-
-import com.fasterxml.jackson.annotation.JsonValue;
+package ${package}.response.model;
 
 /**
- * Response status.
- * 
+ * Response to the frontend.
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
+ * @param <T>
+ *            response content type
  */
-public enum ResponseStatus {
+public interface Response<T> {
 
     /**
-     * The request failed.
+     * Returns the response content.
+     *
+     * @return the response content
      */
-    FAILURE,
-    /**
-     * The request was a success.
-     */
-    SUCCESS,
-    /**
-     * The request generated warnings.
-     */
-    WARNING;
-
-    @JsonValue
-    public final String getValue() {
-        return toString().toLowerCase();
-    }
+    public T getContent();
 
 }

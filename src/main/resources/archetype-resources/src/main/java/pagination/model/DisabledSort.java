@@ -22,30 +22,17 @@
  * SOFTWARE.
  */
 
-package ${package}.response;
+package ${package}.pagination.model;
 
-/**
- * Response to the frontend.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- *
- * @param <T>
- *            response content type
- */
-public interface Response<T> {
+import lombok.Data;
 
-    /**
-     * Returns the response content.
-     * 
-     * @return the response content
-     */
-    public T getContent();
+@Data
+public final class DisabledSort implements Sort {
 
-    /**
-     * Returns the response status.
-     * 
-     * @return the response status
-     */
-    public ResponseStatus getStatus();
+    private final Direction direction = Direction.ASC;
+
+    private final String    property  = "";
+
+    private final Boolean   sorted    = false;
 
 }

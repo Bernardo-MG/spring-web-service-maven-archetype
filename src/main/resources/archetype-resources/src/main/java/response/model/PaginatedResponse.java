@@ -22,67 +22,30 @@
  * SOFTWARE.
  */
 
-package ${package}.response;
-
-import lombok.Data;
-import lombok.NonNull;
+package ${package}.response.model;
 
 /**
- * Default implementation of the response.
- * 
+ * Paginated response to the frontend.
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  * @param <T>
  *            response content type
  */
-@Data
-public class DefaultResponse<T> implements Response<T> {
+public interface PaginatedResponse<T> extends Response<T> {
 
-    /**
-     * Response content.
-     */
-    @NonNull
-    private T              content;
+    public Integer getElementsInPage();
 
-    /**
-     * Response status.
-     */
-    @NonNull
-    private ResponseStatus status = ResponseStatus.SUCCESS;
+    public Boolean getFirst();
 
-    /**
-     * Default constructor.
-     */
-    public DefaultResponse() {
-        super();
-    }
+    public Boolean getLast();
 
-    /**
-     * Constructs a response with the specified content.
-     * 
-     * @param cont
-     *            content
-     */
-    public DefaultResponse(@NonNull final T cont) {
-        super();
+    public Integer getPageNumber();
 
-        content = cont;
-    }
+    public Integer getSize();
 
-    /**
-     * Constructs a response with the specified content and status.
-     * 
-     * @param cont
-     *            content
-     * @param stat
-     *            status
-     */
-    public DefaultResponse(@NonNull final T cont,
-            @NonNull final ResponseStatus stat) {
-        super();
+    public Long getTotalElements();
 
-        content = cont;
-        status = stat;
-    }
+    public Integer getTotalPages();
 
 }
