@@ -62,8 +62,16 @@ public class DefaultExampleEntityService implements ExampleEntityService {
     }
 
     @Override
-    public final Iterable<PersistentExampleEntity> getAllEntities() {
-        return entityRepository.findAll();
+    public final Iterable<PersistentExampleEntity> getAllEntities(final Pagination pagination,
+            final Sort sort) {
+        final Pageable pageable;
+        final Page<WeaponSummary> page;
+
+        pageable = Paginations.toSpring(pagination, sort);
+
+        page = repository.findAll(pageable);
+
+        return Paginations.fromSpring(page);
     }
 
 }

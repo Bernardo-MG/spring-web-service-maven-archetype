@@ -39,8 +39,11 @@ public interface ExampleEntityService {
     /**
      * Returns all the entities from the DB.
      * 
+     * @param pagination requested page info
+     * @param sort requested sort info
      * @return the persisted entities
      */
-    public Iterable<? extends ExampleEntity> getAllEntities();
+    public Iterable<? extends ExampleEntity> getAllEntities(final Pagination pagination,
+            final Sort sort);
 
 }
