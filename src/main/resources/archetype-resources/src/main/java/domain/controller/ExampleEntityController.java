@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package ${package}.controller;
+package ${package}.domain.controller;
 
 import java.util.Objects;
 
@@ -31,8 +31,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ${package}.model.ExampleEntity;
-import ${package}.service.ExampleEntityService;
+import ${package}.domain.model.ExampleEntity;
+import ${package}.domain.service.ExampleEntityService;
+import ${package}.pagination.model.Pagination;
+import ${package}.pagination.model.Sort;
 
 /**
  * Rest controller for the example entities.
@@ -59,7 +61,7 @@ public class ExampleEntityController {
         super();
 
         exampleEntityService = Objects.requireNonNull(service,
-                "Received a null pointer as service");
+            "Received a null pointer as service");
     }
 
     /**
@@ -70,7 +72,7 @@ public class ExampleEntityController {
     @GetMapping
     public Iterable<? extends ExampleEntity> read(final Pagination pagination,
             final Sort sort) {
-        return exampleEntityService.getAllEntities();
+        return exampleEntityService.getAllEntities(pagination, sort);
     }
 
 }

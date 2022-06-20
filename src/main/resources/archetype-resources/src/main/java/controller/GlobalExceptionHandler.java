@@ -37,9 +37,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import ${package}.response.DefaultResponse;
-import ${package}.response.Response;
-import ${package}.response.ResponseStatus;
+import ${package}.response.model.DefaultResponse;
+import ${package}.response.model.Response;
 
 /**
  * Captures and handles exceptions for all the controllers.
@@ -83,7 +82,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             message = ex.getMessage();
         }
 
-        response = new DefaultResponse<>(message, ResponseStatus.FAILURE);
+        response = new DefaultResponse<>(message);
 
         return super.handleExceptionInternal(ex, response, headers, status,
             request);
@@ -102,7 +101,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             .map(x -> x.getDefaultMessage())
             .collect(Collectors.toList());
 
-        response = new DefaultResponse<>(errors, ResponseStatus.WARNING);
+        response = new DefaultResponse<>(errors);
 
         return super.handleExceptionInternal(ex, response, headers, status,
             request);

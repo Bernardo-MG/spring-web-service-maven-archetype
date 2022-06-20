@@ -25,6 +25,9 @@
 package ${package}.domain.service;
 
 import ${package}.domain.model.ExampleEntity;
+import ${package}.pagination.model.PageIterable;
+import ${package}.pagination.model.Pagination;
+import ${package}.pagination.model.Sort;
 
 /**
  * Service for the example entity domain.
@@ -43,7 +46,7 @@ public interface ExampleEntityService {
      * @param sort requested sort info
      * @return the persisted entities
      */
-    public Iterable<? extends ExampleEntity> getAllEntities(final Pagination pagination,
+    public PageIterable<? extends ExampleEntity> getAllEntities(final Pagination pagination,
             final Sort sort);
 
 }

@@ -22,13 +22,11 @@
  * SOFTWARE.
  */
 
-package ${package}.domain.persistence.repository;
+package ${package}.domain.repository;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import ${package}.model.PersistentExampleEntity;
+import ${package}.domain.model.PersistentExampleEntity;
 
 /**
  * Spring-JPA repository for {@link PersistentExampleEntity}.

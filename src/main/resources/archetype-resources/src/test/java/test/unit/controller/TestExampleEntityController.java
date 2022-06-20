@@ -1,17 +1,25 @@
 /**
- * Copyright 2018 the original author or authors
+ * The MIT License (MIT)
  * <p>
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
+ * Copyright (c) ${currentYear} the original author or authors.
  * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * <p>
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 
 package ${package}.test.unit.controller;
@@ -21,10 +29,10 @@ import java.util.Collection;
 
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
@@ -33,21 +41,26 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import ${package}.controller.ResponseAdvice;
-import ${package}.controller.ExampleEntityController;
-import ${package}.model.DefaultExampleEntity;
-import ${package}.model.ExampleEntity;
-import ${package}.service.ExampleEntityService;
+import ${package}.domain.controller.ExampleEntityController;
+import ${package}.domain.model.DefaultExampleEntity;
+import ${package}.domain.model.ExampleEntity;
+import ${package}.domain.service.ExampleEntityService;
+import ${package}.pagination.argument.PaginationArgumentResolver;
+import ${package}.pagination.argument.SortArgumentResolver;
+import ${package}.pagination.model.DefaultPageIterable;
+import ${package}.pagination.model.PageIterable;
+import ${package}.response.controller.ResponseAdvice;
 import ${package}.test.config.UrlConfig;
 
 /**
- * TeamPlayer tests for {@link ExampleEntityController}, validating the
- * results of REST requests.
+ * TeamPlayer tests for {@link ExampleEntityController}, validating the results
+ * of REST requests.
  * <p>
  * The tested controller gives support only for GET requests.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@DisplayName("Example controller")
 public final class TestExampleEntityController {
 
     /**
@@ -63,49 +76,15 @@ public final class TestExampleEntityController {
     }
 
     /**
-     * Sets up the mocked MVC context.
-     */
-    @BeforeEach
-    public final void setUpMockContext() {
-        mockMvc = MockMvcBuilders.standaloneSetup(getController())
-                .setControllerAdvice(ResponseAdvice.class)
-                .setCustomArgumentResolvers(
-                        new PageableHandlerMethodArgumentResolver())
-                .alwaysExpect(MockMvcResultMatchers.status().isOk())
-                .alwaysExpect(MockMvcResultMatchers.content()
-                        .contentType(MediaType.APPLICATION_JSON))
-                .build();
-    }
-
-    /**
-     * Verifies that the data read from the service is returned.
-     */
-    @Test
-    public final void testGet_ExpectedResults() throws Exception {
-        final ResultActions result; // Request result
-
-        result = mockMvc.perform(getGetRequest());
-
-        // The operation was accepted
-        result.andExpect(MockMvcResultMatchers.status().isOk());
-
-        // The response model contains the expected attributes
-        result
-           .andExpect(MockMvcResultMatchers.jsonPath("$.status",
-               Matchers.equalToIgnoringCase("success")))
-           .andExpect(MockMvcResultMatchers.jsonPath("$.content",
-               Matchers.hasSize(3)));
-    }
-
-    /**
      * Returns a controller with mocked dependencies.
      * 
      * @return a controller with mocked dependencies
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
     private final ExampleEntityController getController() {
-        final ExampleEntityService service;   // Mocked service
-        final Collection<ExampleEntity> entities; // Returned entities
+        final ExampleEntityService service;
+        final Collection<ExampleEntity> entities;
+        final DefaultPageIterable<ExampleEntity> pageIterable;
 
         service = Mockito.mock(ExampleEntityService.class);
 
@@ -114,8 +93,13 @@ public final class TestExampleEntityController {
         entities.add(new DefaultExampleEntity());
         entities.add(new DefaultExampleEntity());
 
-        Mockito.when(service.getAllEntities())
-                .thenReturn((Iterable) entities);
+        pageIterable = new DefaultPageIterable();
+        pageIterable.setContent(entities);
+
+        Mockito
+            .when(service.getAllEntities(ArgumentMatchers.any(),
+                ArgumentMatchers.any()))
+            .thenReturn((PageIterable) pageIterable);
 
         return new ExampleEntityController(service);
     }
@@ -127,7 +111,37 @@ public final class TestExampleEntityController {
      */
     private final RequestBuilder getGetRequest() {
         return MockMvcRequestBuilders.get(UrlConfig.ENTITY)
-                .contentType(MediaType.APPLICATION_JSON);
+            .contentType(MediaType.APPLICATION_JSON);
+    }
+
+    @BeforeEach
+    public final void setUpMockContext() {
+        mockMvc = MockMvcBuilders.standaloneSetup(getController())
+            .setControllerAdvice(ResponseAdvice.class)
+            .setCustomArgumentResolvers(new PaginationArgumentResolver(),
+                new SortArgumentResolver())
+            .alwaysExpect(MockMvcResultMatchers.status()
+                .isOk())
+            .alwaysExpect(MockMvcResultMatchers.content()
+                .contentType(MediaType.APPLICATION_JSON))
+            .build();
+    }
+
+    @Test
+    @DisplayName("Returns all the entities")
+    public final void testGet_ExpectedResults() throws Exception {
+        final ResultActions result; // Request result
+
+        result = mockMvc.perform(getGetRequest());
+
+        // The operation was accepted
+        result.andExpect(MockMvcResultMatchers.status()
+            .isOk());
+
+        // The response model contains the expected attributes
+        result
+            .andExpect(MockMvcResultMatchers.jsonPath("$.content",
+                Matchers.hasSize(3)));
     }
 
 }

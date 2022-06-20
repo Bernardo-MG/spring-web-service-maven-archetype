@@ -30,10 +30,10 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-import com.bernardomg.pagination.model.DefaultSort;
-import com.bernardomg.pagination.model.Direction;
-import com.bernardomg.pagination.model.DisabledSort;
-import com.bernardomg.pagination.model.Sort;
+import ${package}.pagination.model.DefaultSort;
+import ${package}.pagination.model.Direction;
+import ${package}.pagination.model.DisabledSort;
+import ${package}.pagination.model.Sort;
 
 import lombok.extern.slf4j.Slf4j;
 

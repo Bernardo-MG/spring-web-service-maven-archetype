@@ -27,10 +27,16 @@ package ${package}.domain.service;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import ${package}.model.PersistentExampleEntity;
-import ${package}.persistence.repository.ExampleEntityRepository;
+import ${package}.domain.model.PersistentExampleEntity;
+import ${package}.domain.repository.ExampleEntityRepository;
+import ${package}.pagination.model.PageIterable;
+import ${package}.pagination.model.Pagination;
+import ${package}.pagination.model.Sort;
+import ${package}.pagination.utils.Paginations;
 
 /**
  * Default implementation of the example entity service.
@@ -44,28 +50,28 @@ public class DefaultExampleEntityService implements ExampleEntityService {
     /**
      * Repository for the domain entities handled by the service.
      */
-    private final ExampleEntityRepository entityRepository;
+    private final ExampleEntityRepository repository;
 
     /**
      * Constructs an entities service with the specified repository.
      *
-     * @param repository
+     * @param repo
      *            the repository for the entity instances
      */
     @Autowired
     public DefaultExampleEntityService(
-            final ExampleEntityRepository repository) {
+            final ExampleEntityRepository repo) {
         super();
 
-        entityRepository = Objects.requireNonNull(repository,
-                "Received a null pointer as repository");
+        repository = Objects.requireNonNull(repo,
+            "Received a null pointer as repository");
     }
 
     @Override
-    public final Iterable<PersistentExampleEntity> getAllEntities(final Pagination pagination,
-            final Sort sort) {
+    public final PageIterable<PersistentExampleEntity>
+            getAllEntities(final Pagination pagination, final Sort sort) {
         final Pageable pageable;
-        final Page<WeaponSummary> page;
+        final Page<PersistentExampleEntity> page;
 
         pageable = Paginations.toSpring(pagination, sort);
 

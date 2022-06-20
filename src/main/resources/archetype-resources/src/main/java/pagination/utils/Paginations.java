@@ -28,11 +28,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-import com.bernardomg.pagination.model.DefaultPageIterable;
-import com.bernardomg.pagination.model.Direction;
-import com.bernardomg.pagination.model.PageIterable;
-import com.bernardomg.pagination.model.Pagination;
-import com.bernardomg.pagination.model.Sort;
+import ${package}.pagination.model.DefaultPageIterable;
+import ${package}.pagination.model.Direction;
+import ${package}.pagination.model.PageIterable;
+import ${package}.pagination.model.Pagination;
+import ${package}.pagination.model.Sort;
 
 public final class Paginations {
 

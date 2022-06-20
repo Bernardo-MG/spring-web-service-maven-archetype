@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package ${package}.response.model.controller;
+package ${package}.response.controller;
 
 import org.springframework.core.MethodParameter;
 import org.springframework.data.domain.Page;
@@ -34,11 +34,11 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
-package ${package}.pagination.model.PageIterable;
-package ${package}.response.model.DefaultPaginatedResponse;
-package ${package}.response.model.DefaultResponse;
-package ${package}.response.model.PaginatedResponse;
-package ${package}.response.model.Response;
+import ${package}.pagination.model.PageIterable;
+import ${package}.response.model.DefaultPaginatedResponse;
+import ${package}.response.model.DefaultResponse;
+import ${package}.response.model.PaginatedResponse;
+import ${package}.response.model.Response;
 
 import lombok.extern.slf4j.Slf4j;
 

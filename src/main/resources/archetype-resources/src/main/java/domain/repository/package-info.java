@@ -29,4 +29,4 @@
  * read from.
  */
 
-package ${package}.domain.persistence.repository;
+package ${package}.domain.repository;
