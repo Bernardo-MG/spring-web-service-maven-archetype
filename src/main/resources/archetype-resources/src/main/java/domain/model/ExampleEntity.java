@@ -22,51 +22,48 @@
  * SOFTWARE.
  */
 
-package ${package}.model;
+package ${package}.domain.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import lombok.Data;
+import java.io.Serializable;
 
 /**
- * Persistent entity for the example application.
- * <p>
- * This makes use of JPA annotations for the persistence configuration.
+ * A simple entity to be used as an example.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@Entity(name = "ExampleEntity")
-@Table(name = "example_entities")
-@Data
-public class PersistentExampleEntity implements ExampleEntity {
+public interface ExampleEntity extends Serializable {
 
     /**
-     * Serialization ID.
-     */
-    @Transient
-    private static final long serialVersionUID = 1328776989450853491L;
-
-    /**
-     * Entity's ID.
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, unique = true)
-    private Integer           id               = -1;
-
-    /**
-     * Name of the entity.
+     * Returns the identifier assigned to this entity.
      * <p>
-     * This is to have additional data apart from the id, to be used on the
-     * tests.
+     * If no identifier has been assigned yet, then the value is expected to be
+     * {@code null} or lower than zero.
+     *
+     * @return the entity's identifier
      */
-    @Column(name = "name", nullable = false, unique = true)
-    private String            name             = "";
+    public Integer getId();
+
+    /**
+     * Returns the name of the entity.
+     *
+     * @return the entity's name
+     */
+    public String getName();
+
+    /**
+     * Sets the identifier assigned to this entity.
+     *
+     * @param identifier
+     *            the identifier for the entity
+     */
+    public void setId(final Integer identifier);
+
+    /**
+     * Changes the name of the entity.
+     *
+     * @param name
+     *            the name to set on the entity
+     */
+    public void setName(final String name);
 
 }

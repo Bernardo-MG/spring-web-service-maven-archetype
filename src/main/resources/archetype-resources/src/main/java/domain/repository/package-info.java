@@ -21,35 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-package ${package}.model;
-
-import lombok.Data;
-
 /**
- * Default entity for the example application.
- *
- * @author Bernardo Mart&iacute;nez Garrido
+ * Repositories.
+ * <p>
+ * Similar to a DAO, a repository is a pattern which allows handling the
+ * persistence layer as if it was a collection, where entities are stored and
+ * read from.
  */
-@Data
-public class DefaultExampleEntity implements ExampleEntity {
 
-    /**
-     * Serialization id.
-     */
-    private static final long serialVersionUID = 7194459697873216367L;
-
-    /**
-     * Entity's ID.
-     */
-    private Integer           id               = -1;
-
-    /**
-     * Name of the entity.
-     * <p>
-     * This is to have additional data apart from the id, to be used on the
-     * tests.
-     */
-    private String            name             = "";
-
-}
+package ${package}.domain.persistence.repository;

@@ -22,25 +22,48 @@
  * SOFTWARE.
  */
 
-package ${package}.service;
+package ${package}.domain.service;
 
-import ${package}.model.ExampleEntity;
+import java.util.Objects;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import ${package}.model.PersistentExampleEntity;
+import ${package}.persistence.repository.ExampleEntityRepository;
 
 /**
- * Service for the example entity domain.
- * <p>
- * This is a domain service just to allow the endpoints querying the entities
- * they are asked for.
+ * Default implementation of the example entity service.
  *
  * @author Bernardo Mart&iacute;nez Garrido
+ *
  */
-public interface ExampleEntityService {
+@Service
+public class DefaultExampleEntityService implements ExampleEntityService {
 
     /**
-     * Returns all the entities from the DB.
-     * 
-     * @return the persisted entities
+     * Repository for the domain entities handled by the service.
      */
-    public Iterable<? extends ExampleEntity> getAllEntities();
+    private final ExampleEntityRepository entityRepository;
+
+    /**
+     * Constructs an entities service with the specified repository.
+     *
+     * @param repository
+     *            the repository for the entity instances
+     */
+    @Autowired
+    public DefaultExampleEntityService(
+            final ExampleEntityRepository repository) {
+        super();
+
+        entityRepository = Objects.requireNonNull(repository,
+                "Received a null pointer as repository");
+    }
+
+    @Override
+    public final Iterable<PersistentExampleEntity> getAllEntities() {
+        return entityRepository.findAll();
+    }
 
 }

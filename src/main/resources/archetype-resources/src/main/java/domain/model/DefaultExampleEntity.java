@@ -22,35 +22,34 @@
  * SOFTWARE.
  */
 
-package ${package}.persistence.repository;
+package ${package}.domain.model;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import ${package}.model.PersistentExampleEntity;
+import lombok.Data;
 
 /**
- * Spring-JPA repository for {@link PersistentExampleEntity}.
- * <p>
- * This is a simple repository just to allow the endpoints querying the entities
- * they are asked for.
+ * Default entity for the example application.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface ExampleEntityRepository
-        extends JpaRepository<PersistentExampleEntity, Integer> {
+@Data
+public class DefaultExampleEntity implements ExampleEntity {
 
     /**
-     * Returns all entities with a partial match to the name.
-     * 
-     * @param name
-     *            name for searching
-     * @param page
-     *            pagination to apply
-     * @return all entities at least partially matching the name
+     * Serialization id.
      */
-    public Page<PersistentExampleEntity> findByNameContaining(final String name,
-            final Pageable page);
+    private static final long serialVersionUID = 7194459697873216367L;
+
+    /**
+     * Entity's ID.
+     */
+    private Integer           id               = -1;
+
+    /**
+     * Name of the entity.
+     * <p>
+     * This is to have additional data apart from the id, to be used on the
+     * tests.
+     */
+    private String            name             = "";
 
 }

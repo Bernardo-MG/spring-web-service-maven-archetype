@@ -21,12 +21,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-/**
- * Repositories.
- * <p>
- * Similar to a DAO, a repository is a pattern which allows handling the
- * persistence layer as if it was a collection, where entities are stored and
- * read from.
- */
 
-package ${package}.persistence.repository;
+package ${package}.domain.persistence.repository;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import ${package}.model.PersistentExampleEntity;
+
+/**
+ * Spring-JPA repository for {@link PersistentExampleEntity}.
+ * <p>
+ * This is a simple repository just to allow the endpoints querying the entities
+ * they are asked for.
+ *
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
+public interface ExampleEntityRepository
+        extends JpaRepository<PersistentExampleEntity, Integer> {
+
+}

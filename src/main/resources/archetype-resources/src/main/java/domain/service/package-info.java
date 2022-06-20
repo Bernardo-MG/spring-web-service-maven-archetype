@@ -23,9 +23,11 @@
  */
 
 /**
- * Model classes.
+ * Services.
  * <p>
- * These represent the main sets of data which the application works with.
+ * While in the MVC architecture all the logic seems to be contained inside the
+ * controllers, using an additional layer of services helps to isolate all the
+ * important logic in the application.
  */
 
-package ${package}.model;
+package ${package}.domain.service;
