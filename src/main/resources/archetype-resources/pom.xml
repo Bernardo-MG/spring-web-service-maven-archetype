@@ -11,7 +11,7 @@
    <parent>
       <groupId>com.bernardomg.maven</groupId>
       <artifactId>base-pom</artifactId>
-      <version>1.5.0</version>
+      <version>1.5.1</version>
    </parent>
 
    <!-- ********************************************** -->
@@ -200,6 +200,7 @@
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
       <!-- ============================================== -->
+      <plugin.enforcer.version>3.0.0</plugin.enforcer.version>
       <plugin.spring.boot.version>${spring.boot.version}</plugin.spring.boot.version>
       <!-- ============================================== -->
       <!-- ================= MAVEN SITE ================= -->
