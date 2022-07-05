@@ -45,43 +45,36 @@ public final class DefaultPaginatedResponse<T> implements PaginatedResponse<T> {
     /**
      * Number of elements in the page.
      */
-    @NonNull
     private Integer elementsInPage = -1;
 
     /**
      * Flags this is as the first page.
      */
-    @NonNull
     private Boolean first          = false;
 
     /**
      * Flags this is as the last page.
      */
-    @NonNull
     private Boolean last           = false;
 
     /**
      * Number of this page.
      */
-    @NonNull
     private Integer pageNumber     = -1;
 
     /**
      * Size of this page.
      */
-    @NonNull
     private Integer size           = -1;
 
     /**
      * Total number of elements among all the pages.
      */
-    @NonNull
     private Long    totalElements  = -1l;
 
     /**
      * Total number of pages.
      */
-    @NonNull
     private Integer totalPages     = -1;
 
     /**
