@@ -34,6 +34,12 @@ import ${package}.pagination.model.PageIterable;
 import ${package}.pagination.model.Pagination;
 import ${package}.pagination.model.Sort;
 
+/**
+ * Pagination utility class.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 public final class Paginations {
 
     public static final <T> PageIterable<T> fromSpring(final Page<T> page) {

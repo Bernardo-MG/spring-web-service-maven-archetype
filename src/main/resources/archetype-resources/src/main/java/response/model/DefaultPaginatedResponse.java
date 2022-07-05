@@ -32,6 +32,8 @@ import lombok.NonNull;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  *
+ * @param <T>
+ *            response content type
  */
 @Data
 public final class DefaultPaginatedResponse<T> implements PaginatedResponse<T> {
@@ -70,7 +72,7 @@ public final class DefaultPaginatedResponse<T> implements PaginatedResponse<T> {
     /**
      * Total number of elements among all the pages.
      */
-    private Long    totalElements  = -1l;
+    private Long    totalElements  = -1L;
 
     /**
      * Total number of pages.

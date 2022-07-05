@@ -67,6 +67,10 @@ public class ExampleEntityController {
     /**
      * Returns a collection of entities.
      *
+     * @param pagination
+     *            pagination request
+     * @param sort
+     *            sorting request
      * @return a collection of entities
      */
     @GetMapping
