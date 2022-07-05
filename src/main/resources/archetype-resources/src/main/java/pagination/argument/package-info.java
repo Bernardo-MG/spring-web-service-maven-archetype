@@ -25,4 +25,4 @@
  * Pagination argument resolvers.
  */
 
-package ${package}.response.controller;
+package ${package}.pagination.argument;
