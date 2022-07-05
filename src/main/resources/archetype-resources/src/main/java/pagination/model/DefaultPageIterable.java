@@ -43,43 +43,36 @@ public final class DefaultPageIterable<T> implements PageIterable<T> {
     /**
      * Number of elements in the page.
      */
-    @NonNull
     private Integer     elementsInPage;
 
     /**
      * Flags this is as the first page.
      */
-    @NonNull
     private Boolean     first;
 
     /**
      * Flags this is as the last page.
      */
-    @NonNull
     private Boolean     last;
 
     /**
      * Number of this page.
      */
-    @NonNull
     private Integer     pageNumber;
 
     /**
      * Size of this page.
      */
-    @NonNull
     private Integer     size;
 
     /**
      * Total number of elements among all the pages.
      */
-    @NonNull
     private Long        totalElements;
 
     /**
      * Total number of pages.
      */
-    @NonNull
     private Integer     totalPages;
 
     @Override
