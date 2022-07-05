@@ -36,12 +36,24 @@ import ${package}.pagination.model.Pagination;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Argument resolver for pagination data.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 @Slf4j
 public final class PaginationArgumentResolver
         implements HandlerMethodArgumentResolver {
 
+    /**
+     * Default size.
+     */
     private static final Integer DEFAULT_SIZE = 20;
 
+    /**
+     * Default constructor.
+     */
     public PaginationArgumentResolver() {
         super();
     }

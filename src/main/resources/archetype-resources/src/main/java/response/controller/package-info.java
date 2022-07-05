@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 /**
- * Response controller classes.
+ * Response controllers.
  */
 
 package ${package}.response.controller;

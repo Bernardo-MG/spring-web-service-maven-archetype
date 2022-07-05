@@ -52,27 +52,43 @@ import ${package}.pagination.model.PageIterable;
 import ${package}.response.controller.ResponseAdvice;
 import ${package}.test.config.UrlConfig;
 
-/**
- * TeamPlayer tests for {@link ExampleEntityController}, validating the results
- * of REST requests.
- * <p>
- * The tested controller gives support only for GET requests.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
 @DisplayName("Example controller")
 public final class TestExampleEntityController {
 
-    /**
-     * Mocked MVC context.
-     */
     private MockMvc mockMvc;
 
-    /**
-     * Default constructor;
-     */
     public TestExampleEntityController() {
         super();
+    }
+
+    @BeforeEach
+    public final void setUpMockContext() {
+        mockMvc = MockMvcBuilders.standaloneSetup(getController())
+            .setControllerAdvice(ResponseAdvice.class)
+            .setCustomArgumentResolvers(new PaginationArgumentResolver(),
+                new SortArgumentResolver())
+            .alwaysExpect(MockMvcResultMatchers.status()
+                .isOk())
+            .alwaysExpect(MockMvcResultMatchers.content()
+                .contentType(MediaType.APPLICATION_JSON))
+            .build();
+    }
+
+    @Test
+    @DisplayName("Returns all the entities")
+    public final void testGet_ExpectedResults() throws Exception {
+        final ResultActions result; // Request result
+
+        result = mockMvc.perform(getGetRequest());
+
+        // The operation was accepted
+        result.andExpect(MockMvcResultMatchers.status()
+            .isOk());
+
+        // The response model contains the expected attributes
+        result
+            .andExpect(MockMvcResultMatchers.jsonPath(".content",
+                Matchers.hasSize(3)));
     }
 
     /**
@@ -112,36 +128,6 @@ public final class TestExampleEntityController {
     private final RequestBuilder getGetRequest() {
         return MockMvcRequestBuilders.get(UrlConfig.ENTITY)
             .contentType(MediaType.APPLICATION_JSON);
-    }
-
-    @BeforeEach
-    public final void setUpMockContext() {
-        mockMvc = MockMvcBuilders.standaloneSetup(getController())
-            .setControllerAdvice(ResponseAdvice.class)
-            .setCustomArgumentResolvers(new PaginationArgumentResolver(),
-                new SortArgumentResolver())
-            .alwaysExpect(MockMvcResultMatchers.status()
-                .isOk())
-            .alwaysExpect(MockMvcResultMatchers.content()
-                .contentType(MediaType.APPLICATION_JSON))
-            .build();
-    }
-
-    @Test
-    @DisplayName("Returns all the entities")
-    public final void testGet_ExpectedResults() throws Exception {
-        final ResultActions result; // Request result
-
-        result = mockMvc.perform(getGetRequest());
-
-        // The operation was accepted
-        result.andExpect(MockMvcResultMatchers.status()
-            .isOk());
-
-        // The response model contains the expected attributes
-        result
-            .andExpect(MockMvcResultMatchers.jsonPath("$.content",
-                Matchers.hasSize(3)));
     }
 
 }

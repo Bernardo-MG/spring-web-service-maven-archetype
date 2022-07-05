@@ -27,6 +27,12 @@ package ${package}.response.model;
 import lombok.Data;
 import lombok.NonNull;
 
+/**
+ * Default implementation of the paginated response.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 @Data
 public final class DefaultPaginatedResponse<T> implements PaginatedResponse<T> {
 
@@ -36,19 +42,47 @@ public final class DefaultPaginatedResponse<T> implements PaginatedResponse<T> {
     @NonNull
     private T       content;
 
-    private Integer elementsInPage;
+    /**
+     * Number of elements in the page.
+     */
+    @NonNull
+    private Integer elementsInPage = -1;
 
-    private Boolean first;
+    /**
+     * Flags this is as the first page.
+     */
+    @NonNull
+    private Boolean first          = false;
 
-    private Boolean last;
+    /**
+     * Flags this is as the last page.
+     */
+    @NonNull
+    private Boolean last           = false;
 
-    private Integer pageNumber;
+    /**
+     * Number of this page.
+     */
+    @NonNull
+    private Integer pageNumber     = -1;
 
-    private Integer size;
+    /**
+     * Size of this page.
+     */
+    @NonNull
+    private Integer size           = -1;
 
-    private Long    totalElements;
+    /**
+     * Total number of elements among all the pages.
+     */
+    @NonNull
+    private Long    totalElements  = -1l;
 
-    private Integer totalPages;
+    /**
+     * Total number of pages.
+     */
+    @NonNull
+    private Integer totalPages     = -1;
 
     /**
      * Default constructor.

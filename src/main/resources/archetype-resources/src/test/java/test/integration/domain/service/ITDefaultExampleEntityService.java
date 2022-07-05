@@ -39,31 +39,30 @@ import ${package}.pagination.model.Pagination;
 import ${package}.pagination.model.Sort;
 import ${package}.test.config.annotation.IntegrationTest;
 
-
 @IntegrationTest
 @DisplayName("Default entity service")
 public class ITDefaultExampleEntityService {
-	
-	@Autowired
-	private DefaultExampleEntityService service;
-	
-	public ITDefaultExampleEntityService() {
-		super();
-	}
-	
-	@Test
-	@DisplayName("Returns all the entities")
-	public void testGetAllEntities() {
-		final Pagination pagination;
-        final Sort sort;
+
+    @Autowired
+    private DefaultExampleEntityService service;
+
+    public ITDefaultExampleEntityService() {
+        super();
+    }
+
+    @Test
+    @DisplayName("Returns all the entities")
+    public void testGetAllEntities() {
+        final Pagination                            pagination;
+        final Sort                                  sort;
         final PageIterable<? extends ExampleEntity> result;
-        
+
         pagination = new DisabledPagination();
         sort = new DisabledSort();
-        
-        result = service.getAllEntities(pagination,sort);
-        
+
+        result = service.getAllEntities(pagination, sort);
+
         Assertions.assertEquals(30, IterableUtils.size(result));
-	}
+    }
 
 }

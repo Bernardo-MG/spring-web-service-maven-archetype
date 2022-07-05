@@ -34,7 +34,7 @@ public final class UrlConfig {
     /**
      * Entities REST URL.
      */
-    public static final String ENTITY      = "/entity";
+    public static final String ENTITY = "/entity";
 
     /**
      * Default constructor to avoid initialization.

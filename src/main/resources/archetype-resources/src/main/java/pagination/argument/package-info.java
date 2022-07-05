@@ -21,33 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-package ${package}.pagination.model;
-
-import lombok.Data;
-
 /**
- * Disabled sorted data request. This serves as a null object to disable sorting.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- *
+ * Pagination argument resolvers.
  */
-@Data
-public final class DisabledSort implements Sort {
 
-    /**
-     * Default direction.
-     */
-    private final Direction direction = Direction.ASC;
-
-    /**
-     * Default property.
-     */
-    private final String    property  = "";
-
-    /**
-     * Disabled sort flag.
-     */
-    private final Boolean   sorted    = false;
-
-}
+package ${package}.response.controller;

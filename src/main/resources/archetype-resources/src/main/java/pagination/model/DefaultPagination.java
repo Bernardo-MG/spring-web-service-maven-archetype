@@ -27,24 +27,45 @@ package ${package}.pagination.model;
 import lombok.Data;
 import lombok.NonNull;
 
+/**
+ * Default implementation of the paginated data request.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 @Data
 public final class DefaultPagination implements Pagination {
 
+    /**
+     * Page index to read.
+     */
     @NonNull
     private final Integer page;
 
+    /**
+     * Always paged.
+     */
     @NonNull
     private final Boolean paged = true;
 
+    /**
+     * Number of elements to read per page.
+     */
     @NonNull
     private final Integer size;
 
-    public DefaultPagination(@NonNull final Integer page,
-            @NonNull final Integer size) {
+    /**
+     * Builds a pagination request with the specified data.
+     * 
+     * @param pg page index
+     * @param sz page size
+     */
+    public DefaultPagination(@NonNull final Integer pg,
+            @NonNull final Integer sz) {
         super();
 
-        this.page = page;
-        this.size = size;
+        page = pg;
+        size = sz;
     }
 
 }
