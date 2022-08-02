@@ -26,9 +26,9 @@ package ${package}.domain.controller;
 
 import java.util.Objects;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ${package}.domain.model.ExampleEntity;
@@ -56,7 +56,6 @@ public class ExampleEntityController {
      * @param service
      *            example entity service
      */
-    @Autowired
     public ExampleEntityController(final ExampleEntityService service) {
         super();
 
@@ -74,8 +73,9 @@ public class ExampleEntityController {
      * @return a collection of entities
      */
     @GetMapping
-    public Iterable<? extends ExampleEntity> read(final Pagination pagination,
-            final Sort sort) {
+    public Iterable<? extends ExampleEntity> read(
+            @RequestParam(required = false) final Pagination pagination,
+            @RequestParam(required = false) final Sort sort) {
         return exampleEntityService.getAllEntities(pagination, sort);
     }
 
