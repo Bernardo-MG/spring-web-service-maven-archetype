@@ -35,7 +35,7 @@ package ${package}.response.model;
 public interface Response<T> {
 
     /**
-     * Response content.
+     * Returns the response content.
      *
      * @return the response content
      */

@@ -26,7 +26,7 @@ package ${package}.pagination.model;
 
 /**
  * Paged iterable.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  * @param <T>
  *            the type of elements returned by the iterator

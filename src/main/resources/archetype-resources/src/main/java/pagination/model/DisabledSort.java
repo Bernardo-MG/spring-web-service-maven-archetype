@@ -28,12 +28,17 @@ import lombok.Data;
 
 /**
  * Disabled sorted data request. This serves as a null object to disable sorting.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
 @Data
 public final class DisabledSort implements Sort {
+
+    /**
+     * Singleton for disabled sort.
+     */
+    public static Sort      INSTANCE  = new DisabledSort();
 
     /**
      * Default direction.

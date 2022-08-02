@@ -30,26 +30,18 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-import ${package}.pagination.model.DefaultPagination;
-import ${package}.pagination.model.DisabledPagination;
 import ${package}.pagination.model.Pagination;
 
 import lombok.extern.slf4j.Slf4j;
 
 /**
  * Argument resolver for pagination data.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
 @Slf4j
-public final class PaginationArgumentResolver
-        implements HandlerMethodArgumentResolver {
-
-    /**
-     * Default size.
-     */
-    private static final Integer DEFAULT_SIZE = 20;
+public final class PaginationArgumentResolver implements HandlerMethodArgumentResolver {
 
     /**
      * Default constructor.
@@ -59,35 +51,42 @@ public final class PaginationArgumentResolver
     }
 
     @Override
-    public final Pagination resolveArgument(final MethodParameter parameter,
-            final ModelAndViewContainer mavContainer,
-            final NativeWebRequest webRequest,
-            final WebDataBinderFactory binderFactory) throws Exception {
-        final String rawPage;
-        final String sizeText;
-        final Integer page;
-        final Integer size;
+    public final Pagination resolveArgument(final MethodParameter parameter, final ModelAndViewContainer mavContainer,
+            final NativeWebRequest webRequest, final WebDataBinderFactory binderFactory) throws Exception {
+        final String     pagedText;
+        final String     pageText;
+        final String     sizeText;
+        final Boolean    paged;
+        final Integer    page;
+        final Integer    size;
         final Pagination pagination;
 
-        rawPage = webRequest.getParameter("page");
+        pagedText = webRequest.getParameter("paged");
+        paged = parsePaged(pagedText);
 
-        if (rawPage == null) {
-            // No pagination
-            pagination = new DisabledPagination();
-            log.trace("No pagination received, using disabled pagination");
-        } else {
-            page = Integer.valueOf(rawPage);
+        if (paged) {
+            pageText = webRequest.getParameter("page");
             sizeText = webRequest.getParameter("size");
-            if (sizeText == null) {
-                // No size
-                size = DEFAULT_SIZE;
-                log.trace("No size received, using default page size: {}",
-                    size);
+
+            if ((pageText == null) && (sizeText == null)) {
+                // No pagination parameters
+                pagination = Pagination.first();
+                log.trace("No pagination received, using disabled pagination");
             } else {
-                size = Integer.valueOf(sizeText);
+                page = parsePage(pageText);
+                size = parseSize(sizeText);
+
+                log.trace("Building page {} with size {}", page, size);
+                // Checks size. If it is invalid then the default size is used
+                if (size > 0) {
+                    pagination = Pagination.of(page, size);
+                } else {
+                    log.trace("Invalid size {}, using default size", size);
+                    pagination = Pagination.of(page);
+                }
             }
-            log.trace("Building page {} with size {}", page, size);
-            pagination = new DefaultPagination(page, size);
+        } else {
+            pagination = Pagination.disabled();
         }
 
         return pagination;
@@ -96,6 +95,65 @@ public final class PaginationArgumentResolver
     @Override
     public final boolean supportsParameter(final MethodParameter parameter) {
         return Pagination.class.equals(parameter.getParameterType());
+    }
+
+    /**
+     * Transforms the page text into its numeric value.
+     *
+     * @param pageText
+     *            text with the pagination page
+     * @return page as integer
+     */
+    private final Integer parsePage(final String pageText) {
+        final Integer page;
+
+        if (pageText == null) {
+            page = 0;
+        } else {
+            page = Integer.valueOf(pageText);
+        }
+
+        return page;
+    }
+
+    /**
+     * Transforms the paged text into its boolean value.
+     *
+     * @param pagedText
+     *            text with the pagination paged flag
+     * @return paged as boolean
+     */
+    private final Boolean parsePaged(final String pagedText) {
+        final Boolean paged;
+
+        if (pagedText == null) {
+            paged = true;
+        } else {
+            paged = Boolean.valueOf(pagedText);
+        }
+
+        return paged;
+    }
+
+    /**
+     * Transforms the size text into its numeric value.
+     *
+     * @param sizeText
+     *            text with the pagination size
+     * @return size as integer
+     */
+    private final Integer parseSize(final String sizeText) {
+        final Integer size;
+
+        if (sizeText == null) {
+            // No size
+            size = -1;
+            log.trace("No size received");
+        } else {
+            size = Integer.valueOf(sizeText);
+        }
+
+        return size;
     }
 
 }
