@@ -1,5 +1,5 @@
 
-package ${package}.pagination.test.unit.argument;
+package ${package}.test.pagination.test.unit.argument;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
