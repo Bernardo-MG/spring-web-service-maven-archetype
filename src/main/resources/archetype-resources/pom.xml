@@ -198,6 +198,7 @@
       <spring.boot.version>2.7.2</spring.boot.version>
       <spring.data.version>2021.2.2</spring.data.version>
       <spring.version>5.3.22</spring.version>
+      <springdoc.version>1.6.9</springdoc.version>
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
       <!-- ============================================== -->
@@ -486,6 +487,14 @@
          <!-- Jackson annotations -->
          <groupId>com.fasterxml.jackson.core</groupId>
          <artifactId>jackson-annotations</artifactId>
+      </dependency>
+      <!-- ============================================== -->
+      <!-- ================ API DOCS ==================== -->
+      <!-- ============================================== -->
+      <dependency>
+         <groupId>org.springdoc</groupId>
+         <artifactId>springdoc-openapi-ui</artifactId>
+         <version>${springdoc.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- =========== VERSION ENFORCEMENT ============== -->
