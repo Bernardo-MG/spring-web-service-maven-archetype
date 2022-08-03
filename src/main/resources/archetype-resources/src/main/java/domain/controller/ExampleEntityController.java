@@ -28,8 +28,11 @@ import java.util.Objects;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.bernardomg.domain.model.ExampleEntity;
+import com.bernardomg.pagination.model.Pagination;
+import com.bernardomg.pagination.model.Sort;
 
 import ${package}.domain.model.ExampleEntity;
 import ${package}.domain.service.ExampleEntityService;
@@ -73,9 +76,8 @@ public class ExampleEntityController {
      * @return a collection of entities
      */
     @GetMapping
-    public Iterable<? extends ExampleEntity> read(
-            @RequestParam(required = false) final Pagination pagination,
-            @RequestParam(required = false) final Sort sort) {
+    public Iterable<? extends ExampleEntity> read(final Pagination pagination,
+            final Sort sort) {
         return exampleEntityService.getAllEntities(pagination, sort);
     }
 
