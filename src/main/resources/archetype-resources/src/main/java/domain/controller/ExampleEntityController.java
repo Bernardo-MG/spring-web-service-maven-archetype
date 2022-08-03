@@ -30,10 +30,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bernardomg.domain.model.ExampleEntity;
-import com.bernardomg.pagination.model.Pagination;
-import com.bernardomg.pagination.model.Sort;
-
 import ${package}.domain.model.ExampleEntity;
 import ${package}.domain.service.ExampleEntityService;
 import ${package}.pagination.model.Pagination;
