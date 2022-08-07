@@ -30,9 +30,6 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-import com.bernardomg.pagination.model.Direction;
-import com.bernardomg.pagination.model.Sort;
-
 import ${package}.pagination.model.Direction;
 import ${package}.pagination.model.Sort;
 
