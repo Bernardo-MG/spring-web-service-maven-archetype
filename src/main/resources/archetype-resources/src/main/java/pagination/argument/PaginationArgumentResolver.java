@@ -30,8 +30,6 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-import com.bernardomg.pagination.model.Pagination;
-
 import ${package}.pagination.model.Pagination;
 
 import lombok.extern.slf4j.Slf4j;
