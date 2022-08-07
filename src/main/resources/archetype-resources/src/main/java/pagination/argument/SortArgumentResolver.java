@@ -70,7 +70,7 @@ public final class SortArgumentResolver implements HandlerMethodArgumentResolver
             property = webRequest.getParameter("property");
             directionText = webRequest.getParameter("direction");
 
-            if ((property == null) && (directionText == null)) {
+            if (property == null) {
                 // No sort parameters
                 log.trace("No sorting data received, using disabled sort");
                 sort = Sort.disabled();
