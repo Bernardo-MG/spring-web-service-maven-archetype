@@ -21,44 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-package ${package}.config;
-
-import java.util.List;
-
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import ${package}.pagination.argument.PaginationArgumentResolver;
-import ${package}.pagination.argument.SortArgumentResolver;
-
 /**
- * Web configuration.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- *
+ * Repositories.
+ * <p>
+ * Similar to a DAO, a repository is a pattern which allows handling the
+ * persistence layer as if it was a collection, where entities are stored and
+ * read from.
  */
-@Configuration
-public class WebConfiguration implements WebMvcConfigurer {
 
-    /**
-     * Default constructor.
-     */
-    public WebConfiguration() {
-        super();
-    }
-
-    @Override
-    public void addArgumentResolvers(final List<HandlerMethodArgumentResolver> argumentResolvers) {
-        argumentResolvers.add(new PaginationArgumentResolver());
-        argumentResolvers.add(new SortArgumentResolver());
-    }
-
-    @Override
-    public void addCorsMappings(final CorsRegistry registry) {
-        registry.addMapping("/**");
-    }
-
-}
+package ${package}.domain.repository;

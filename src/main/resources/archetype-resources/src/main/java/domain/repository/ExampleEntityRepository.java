@@ -22,43 +22,21 @@
  * SOFTWARE.
  */
 
-package ${package}.config;
+package ${package}.domain.repository;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import ${package}.pagination.argument.PaginationArgumentResolver;
-import ${package}.pagination.argument.SortArgumentResolver;
+import ${package}.domain.model.PersistentExampleEntity;
 
 /**
- * Web configuration.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
+ * Spring-JPA repository for {@link PersistentExampleEntity}.
+ * <p>
+ * This is a simple repository just to allow the endpoints querying the entities
+ * they are asked for.
  *
+ * @author Bernardo Mart&iacute;nez Garrido
  */
-@Configuration
-public class WebConfiguration implements WebMvcConfigurer {
-
-    /**
-     * Default constructor.
-     */
-    public WebConfiguration() {
-        super();
-    }
-
-    @Override
-    public void addArgumentResolvers(final List<HandlerMethodArgumentResolver> argumentResolvers) {
-        argumentResolvers.add(new PaginationArgumentResolver());
-        argumentResolvers.add(new SortArgumentResolver());
-    }
-
-    @Override
-    public void addCorsMappings(final CorsRegistry registry) {
-        registry.addMapping("/**");
-    }
+public interface ExampleEntityRepository
+        extends JpaRepository<PersistentExampleEntity, Integer> {
 
 }

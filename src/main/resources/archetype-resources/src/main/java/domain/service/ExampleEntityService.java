@@ -22,43 +22,31 @@
  * SOFTWARE.
  */
 
-package ${package}.config;
+package ${package}.domain.service;
 
-import java.util.List;
-
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import ${package}.pagination.argument.PaginationArgumentResolver;
-import ${package}.pagination.argument.SortArgumentResolver;
+import ${package}.domain.model.ExampleEntity;
+import ${package}.pagination.model.PageIterable;
+import ${package}.pagination.model.Pagination;
+import ${package}.pagination.model.Sort;
 
 /**
- * Web configuration.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
+ * Service for the example entity domain.
+ * <p>
+ * This is a domain service just to allow the endpoints querying the entities
+ * they are asked for.
  *
+ * @author Bernardo Mart&iacute;nez Garrido
  */
-@Configuration
-public class WebConfiguration implements WebMvcConfigurer {
+public interface ExampleEntityService {
 
     /**
-     * Default constructor.
+     * Returns all the entities from the DB.
+     * 
+     * @param pagination requested page info
+     * @param sort requested sort info
+     * @return the persisted entities
      */
-    public WebConfiguration() {
-        super();
-    }
-
-    @Override
-    public void addArgumentResolvers(final List<HandlerMethodArgumentResolver> argumentResolvers) {
-        argumentResolvers.add(new PaginationArgumentResolver());
-        argumentResolvers.add(new SortArgumentResolver());
-    }
-
-    @Override
-    public void addCorsMappings(final CorsRegistry registry) {
-        registry.addMapping("/**");
-    }
+    public PageIterable<? extends ExampleEntity> getAllEntities(final Pagination pagination,
+            final Sort sort);
 
 }

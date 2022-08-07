@@ -22,43 +22,34 @@
  * SOFTWARE.
  */
 
-package ${package}.config;
+package ${package}.domain.model;
 
-import java.util.List;
-
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import ${package}.pagination.argument.PaginationArgumentResolver;
-import ${package}.pagination.argument.SortArgumentResolver;
+import lombok.Data;
 
 /**
- * Web configuration.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
+ * Default entity for the example application.
  *
+ * @author Bernardo Mart&iacute;nez Garrido
  */
-@Configuration
-public class WebConfiguration implements WebMvcConfigurer {
+@Data
+public class DefaultExampleEntity implements ExampleEntity {
 
     /**
-     * Default constructor.
+     * Serialization id.
      */
-    public WebConfiguration() {
-        super();
-    }
+    private static final long serialVersionUID = 7194459697873216367L;
 
-    @Override
-    public void addArgumentResolvers(final List<HandlerMethodArgumentResolver> argumentResolvers) {
-        argumentResolvers.add(new PaginationArgumentResolver());
-        argumentResolvers.add(new SortArgumentResolver());
-    }
+    /**
+     * Entity's ID.
+     */
+    private Integer           id               = -1;
 
-    @Override
-    public void addCorsMappings(final CorsRegistry registry) {
-        registry.addMapping("/**");
-    }
+    /**
+     * Name of the entity.
+     * <p>
+     * This is to have additional data apart from the id, to be used on the
+     * tests.
+     */
+    private String            name             = "";
 
 }

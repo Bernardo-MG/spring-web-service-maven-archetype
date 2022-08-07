@@ -22,43 +22,73 @@
  * SOFTWARE.
  */
 
-package ${package}.config;
+package ${package}.pagination.model;
 
-import java.util.List;
+import java.util.Collections;
+import java.util.Iterator;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
-import ${package}.pagination.argument.PaginationArgumentResolver;
-import ${package}.pagination.argument.SortArgumentResolver;
-
-/**
- * Web configuration.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- *
- */
-@Configuration
-public class WebConfiguration implements WebMvcConfigurer {
+@Data
+@NoArgsConstructor
+public final class DefaultPageIterable<T> implements PageIterable<T> {
 
     /**
-     * Default constructor.
+     * Actual content.
      */
-    public WebConfiguration() {
-        super();
+    @NonNull
+    private Iterable<T> content        = Collections.emptyList();
+
+    /**
+     * Number of elements in the page.
+     */
+    private Integer     elementsInPage = 0;
+
+    /**
+     * Flags this is as the first page.
+     */
+    private Boolean     first          = false;
+
+    /**
+     * Flags this is as the last page.
+     */
+    private Boolean     last           = false;
+
+    /**
+     * Number of this page.
+     */
+    private Integer     pageNumber     = 0;
+
+    /**
+     * Size of this page.
+     */
+    private Integer     size           = 0;
+
+    /**
+     * Total number of elements among all the pages.
+     */
+    private Long        totalElements  = 0L;
+
+    /**
+     * Total number of pages.
+     */
+    private Integer     totalPages     = 0;
+
+    @Override
+    public Boolean isFirst() {
+        return first;
     }
 
     @Override
-    public void addArgumentResolvers(final List<HandlerMethodArgumentResolver> argumentResolvers) {
-        argumentResolvers.add(new PaginationArgumentResolver());
-        argumentResolvers.add(new SortArgumentResolver());
+    public Boolean isLast() {
+        return last;
     }
 
     @Override
-    public void addCorsMappings(final CorsRegistry registry) {
-        registry.addMapping("/**");
+    public final Iterator<T> iterator() {
+        return content.iterator();
     }
 
 }

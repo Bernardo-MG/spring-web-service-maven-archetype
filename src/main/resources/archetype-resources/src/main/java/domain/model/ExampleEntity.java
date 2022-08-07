@@ -22,43 +22,48 @@
  * SOFTWARE.
  */
 
-package ${package}.config;
+package ${package}.domain.model;
 
-import java.util.List;
-
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import ${package}.pagination.argument.PaginationArgumentResolver;
-import ${package}.pagination.argument.SortArgumentResolver;
+import java.io.Serializable;
 
 /**
- * Web configuration.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
+ * A simple entity to be used as an example.
  *
+ * @author Bernardo Mart&iacute;nez Garrido
  */
-@Configuration
-public class WebConfiguration implements WebMvcConfigurer {
+public interface ExampleEntity extends Serializable {
 
     /**
-     * Default constructor.
+     * Returns the identifier assigned to this entity.
+     * <p>
+     * If no identifier has been assigned yet, then the value is expected to be
+     * {@code null} or lower than zero.
+     *
+     * @return the entity's identifier
      */
-    public WebConfiguration() {
-        super();
-    }
+    public Integer getId();
 
-    @Override
-    public void addArgumentResolvers(final List<HandlerMethodArgumentResolver> argumentResolvers) {
-        argumentResolvers.add(new PaginationArgumentResolver());
-        argumentResolvers.add(new SortArgumentResolver());
-    }
+    /**
+     * Returns the name of the entity.
+     *
+     * @return the entity's name
+     */
+    public String getName();
 
-    @Override
-    public void addCorsMappings(final CorsRegistry registry) {
-        registry.addMapping("/**");
-    }
+    /**
+     * Sets the identifier assigned to this entity.
+     *
+     * @param identifier
+     *            the identifier for the entity
+     */
+    public void setId(final Integer identifier);
+
+    /**
+     * Changes the name of the entity.
+     *
+     * @param name
+     *            the name to set on the entity
+     */
+    public void setName(final String name);
 
 }

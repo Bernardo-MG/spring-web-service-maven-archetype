@@ -22,43 +22,26 @@
  * SOFTWARE.
  */
 
-package ${package}.config;
+package ${package}.test.config.annotation;
 
-import java.util.List;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.transaction.annotation.Transactional;
 
-import ${package}.pagination.argument.PaginationArgumentResolver;
-import ${package}.pagination.argument.SortArgumentResolver;
+import ${package}.Application;
 
-/**
- * Web configuration.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- *
- */
-@Configuration
-public class WebConfiguration implements WebMvcConfigurer {
-
-    /**
-     * Default constructor.
-     */
-    public WebConfiguration() {
-        super();
-    }
-
-    @Override
-    public void addArgumentResolvers(final List<HandlerMethodArgumentResolver> argumentResolvers) {
-        argumentResolvers.add(new PaginationArgumentResolver());
-        argumentResolvers.add(new SortArgumentResolver());
-    }
-
-    @Override
-    public void addCorsMappings(final CorsRegistry registry) {
-        registry.addMapping("/**");
-    }
+@SpringJUnitConfig
+@Transactional
+@SpringBootTest(classes = Application.class)
+@Rollback
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+public @interface IntegrationTest {
 
 }

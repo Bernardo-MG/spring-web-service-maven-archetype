@@ -22,43 +22,65 @@
  * SOFTWARE.
  */
 
-package ${package}.config;
-
-import java.util.List;
-
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import ${package}.pagination.argument.PaginationArgumentResolver;
-import ${package}.pagination.argument.SortArgumentResolver;
+package ${package}.response.model;
 
 /**
- * Web configuration.
- * 
+ * Paginated response to the frontend.
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
+ * @param <T>
+ *            response content type
  */
-@Configuration
-public class WebConfiguration implements WebMvcConfigurer {
+public interface PaginatedResponse<T> extends Response<T> {
 
     /**
-     * Default constructor.
+     * Number of elements in the page.
+     *
+     * @return number of elements
      */
-    public WebConfiguration() {
-        super();
-    }
+    public Integer getElementsInPage();
 
-    @Override
-    public void addArgumentResolvers(final List<HandlerMethodArgumentResolver> argumentResolvers) {
-        argumentResolvers.add(new PaginationArgumentResolver());
-        argumentResolvers.add(new SortArgumentResolver());
-    }
+    /**
+     * Flags this is as the first page.
+     *
+     * @return {@code true} if this is the first page, {@code false} otherwise
+     */
+    public Boolean getFirst();
 
-    @Override
-    public void addCorsMappings(final CorsRegistry registry) {
-        registry.addMapping("/**");
-    }
+    /**
+     * Flags this is as the last page.
+     *
+     * @return {@code true} if this is the last page, {@code false} otherwise
+     */
+    public Boolean getLast();
+
+    /**
+     * Number of this page.
+     *
+     * @return the number of this page
+     */
+    public Integer getPageNumber();
+
+    /**
+     * Size of this page.
+     *
+     * @return the size of this page.
+     */
+    public Integer getSize();
+
+    /**
+     * Total number of elements among all the pages.
+     *
+     * @return the total number of elements
+     */
+    public Long getTotalElements();
+
+    /**
+     * Total number of pages.
+     *
+     * @return the total number of pages
+     */
+    public Integer getTotalPages();
 
 }

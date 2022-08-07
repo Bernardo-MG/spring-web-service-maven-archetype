@@ -22,43 +22,37 @@
  * SOFTWARE.
  */
 
-package ${package}.config;
+package ${package}.pagination.model;
 
-import java.util.List;
-
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import ${package}.pagination.argument.PaginationArgumentResolver;
-import ${package}.pagination.argument.SortArgumentResolver;
+import lombok.Data;
 
 /**
- * Web configuration.
- * 
+ * Disabled sorted data request. This serves as a null object to disable sorting.
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-@Configuration
-public class WebConfiguration implements WebMvcConfigurer {
+@Data
+public final class DisabledSort implements Sort {
 
     /**
-     * Default constructor.
+     * Singleton for disabled sort.
      */
-    public WebConfiguration() {
-        super();
-    }
+    public static final Sort      INSTANCE  = new DisabledSort();
 
-    @Override
-    public void addArgumentResolvers(final List<HandlerMethodArgumentResolver> argumentResolvers) {
-        argumentResolvers.add(new PaginationArgumentResolver());
-        argumentResolvers.add(new SortArgumentResolver());
-    }
+    /**
+     * Default direction.
+     */
+    private final Direction direction = Direction.ASC;
 
-    @Override
-    public void addCorsMappings(final CorsRegistry registry) {
-        registry.addMapping("/**");
-    }
+    /**
+     * Default property.
+     */
+    private final String    property  = "";
+
+    /**
+     * Disabled sort flag.
+     */
+    private final Boolean   sorted    = false;
 
 }

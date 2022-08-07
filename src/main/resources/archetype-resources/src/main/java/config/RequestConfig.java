@@ -24,41 +24,37 @@
 
 package ${package}.config;
 
-import java.util.List;
-
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import ${package}.pagination.argument.PaginationArgumentResolver;
 import ${package}.pagination.argument.SortArgumentResolver;
 
 /**
- * Web configuration.
- * 
+ * Request configuration.
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
 @Configuration
-public class WebConfiguration implements WebMvcConfigurer {
+public class RequestConfig {
 
     /**
      * Default constructor.
      */
-    public WebConfiguration() {
+    public RequestConfig() {
         super();
     }
 
-    @Override
-    public void addArgumentResolvers(final List<HandlerMethodArgumentResolver> argumentResolvers) {
-        argumentResolvers.add(new PaginationArgumentResolver());
-        argumentResolvers.add(new SortArgumentResolver());
+    @Bean("paginationArgumentResolver")
+    public HandlerMethodArgumentResolver getPaginationArgumentResolver() {
+        return new PaginationArgumentResolver();
     }
 
-    @Override
-    public void addCorsMappings(final CorsRegistry registry) {
-        registry.addMapping("/**");
+    @Bean("sortArgumentResolver")
+    public HandlerMethodArgumentResolver getSortArgumentResolver() {
+        return new SortArgumentResolver();
     }
 
 }

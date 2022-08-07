@@ -22,35 +22,71 @@
  * SOFTWARE.
  */
 
-package ${package};
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+package ${package}.pagination.model;
 
 /**
- * Application runnable class. This allows Spring Boot to run the application.
+ * Paged iterable.
  *
  * @author Bernardo Mart&iacute;nez Garrido
- *
+ * @param <T>
+ *            the type of elements returned by the iterator
  */
-@SpringBootApplication
-public class Application {
+public interface PageIterable<T> extends Iterable<T> {
 
     /**
-     * Runnable main method.
+     * Actual content.
      *
-     * @param args
-     *            execution parameters
+     * @return content wrapped by the page
      */
-    public static void main(final String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+    public Iterable<T> getContent();
 
     /**
-     * Default constructor.
+     * Number of elements in the page.
+     *
+     * @return number of elements
      */
-    public Application() {
-        super();
-    }
+    public Integer getElementsInPage();
+
+    /**
+     * Number of this page.
+     *
+     * @return the number of this page
+     */
+    public Integer getPageNumber();
+
+    /**
+     * Size of this page.
+     *
+     * @return the size of this page.
+     */
+    public Integer getSize();
+
+    /**
+     * Total number of elements among all the pages.
+     *
+     * @return the total number of elements
+     */
+    public Long getTotalElements();
+
+    /**
+     * Total number of pages.
+     *
+     * @return the total number of pages
+     */
+    public Integer getTotalPages();
+
+    /**
+     * Flags this is as the first page.
+     *
+     * @return {@code true} if this is the first page, {@code false} otherwise
+     */
+    public Boolean isFirst();
+
+    /**
+     * Flags this is as the last page.
+     *
+     * @return {@code true} if this is the last page, {@code false} otherwise
+     */
+    public Boolean isLast();
 
 }

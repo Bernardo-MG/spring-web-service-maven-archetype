@@ -22,43 +22,41 @@
  * SOFTWARE.
  */
 
-package ${package}.config;
+package ${package}.pagination.model;
 
-import java.util.List;
-
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import ${package}.pagination.argument.PaginationArgumentResolver;
-import ${package}.pagination.argument.SortArgumentResolver;
+import lombok.Data;
+import lombok.NonNull;
 
 /**
- * Web configuration.
- * 
+ * Disabled paginated data request. This serves as a null object to disable pagination.
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-@Configuration
-public class WebConfiguration implements WebMvcConfigurer {
+@Data
+public final class DisabledPagination implements Pagination {
 
     /**
-     * Default constructor.
+     * Singleton for disabled pagination.
      */
-    public WebConfiguration() {
-        super();
-    }
+    public static final Pagination INSTANCE = new DisabledPagination();
 
-    @Override
-    public void addArgumentResolvers(final List<HandlerMethodArgumentResolver> argumentResolvers) {
-        argumentResolvers.add(new PaginationArgumentResolver());
-        argumentResolvers.add(new SortArgumentResolver());
-    }
+    /**
+     * Default page.
+     */
+    @NonNull
+    private final Integer    page     = -1;
 
-    @Override
-    public void addCorsMappings(final CorsRegistry registry) {
-        registry.addMapping("/**");
-    }
+    /**
+     * Disabled pagination flag.
+     */
+    @NonNull
+    private final Boolean    paged    = false;
+
+    /**
+     * Default size.
+     */
+    @NonNull
+    private final Integer    size     = -1;
 
 }

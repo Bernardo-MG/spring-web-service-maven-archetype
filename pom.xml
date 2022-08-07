@@ -15,7 +15,7 @@
    <parent>
       <groupId>com.bernardomg.maven</groupId>
       <artifactId>archetype-pom</artifactId>
-      <version>1.3.0</version>
+      <version>1.3.1</version>
    </parent>
 
    <!-- ********************************************** -->
@@ -24,13 +24,13 @@
 
    <groupId>com.bernardomg.maven.archetypes</groupId>
    <artifactId>spring-web-service-maven-archetype</artifactId>
-   <version>1.0.1</version>
+   <version>1.1.0</version>
    <packaging>maven-archetype</packaging>
 
    <name>Spring Web Service Maven Archetype</name>
    <description>A Maven Archetype to ease the creation of Spring web services.</description>
    <url>https://www.github.com/bernardo-mg/spring-web-service-maven-archetype</url>
-   <inceptionYear>2015</inceptionYear>
+   <inceptionYear>2021</inceptionYear>
 
    <licenses>
       <license>

@@ -22,43 +22,51 @@
  * SOFTWARE.
  */
 
-package ${package}.config;
+package ${package}.domain.model;
 
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import ${package}.pagination.argument.PaginationArgumentResolver;
-import ${package}.pagination.argument.SortArgumentResolver;
+import lombok.Data;
 
 /**
- * Web configuration.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
+ * Persistent entity for the example application.
+ * <p>
+ * This makes use of JPA annotations for the persistence configuration.
  *
+ * @author Bernardo Mart&iacute;nez Garrido
  */
-@Configuration
-public class WebConfiguration implements WebMvcConfigurer {
+@Entity(name = "ExampleEntity")
+@Table(name = "example_entities")
+@Data
+public class PersistentExampleEntity implements ExampleEntity {
 
     /**
-     * Default constructor.
+     * Serialization ID.
      */
-    public WebConfiguration() {
-        super();
-    }
+    @Transient
+    private static final long serialVersionUID = 1328776989450853491L;
 
-    @Override
-    public void addArgumentResolvers(final List<HandlerMethodArgumentResolver> argumentResolvers) {
-        argumentResolvers.add(new PaginationArgumentResolver());
-        argumentResolvers.add(new SortArgumentResolver());
-    }
+    /**
+     * Entity's ID.
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, unique = true)
+    private Integer           id               = -1;
 
-    @Override
-    public void addCorsMappings(final CorsRegistry registry) {
-        registry.addMapping("/**");
-    }
+    /**
+     * Name of the entity.
+     * <p>
+     * This is to have additional data apart from the id, to be used on the
+     * tests.
+     */
+    @Column(name = "name", nullable = false, unique = true)
+    private String            name             = "";
 
 }

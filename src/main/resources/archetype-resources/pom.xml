@@ -11,7 +11,7 @@
    <parent>
       <groupId>com.bernardomg.maven</groupId>
       <artifactId>base-pom</artifactId>
-      <version>1.5.0</version>
+      <version>1.5.2</version>
    </parent>
 
    <!-- ********************************************** -->
@@ -63,45 +63,6 @@
    <!-- ********************************************** -->
 
    <profiles>
-      <profile>
-         <!-- Profile for the Eclipse Maven plugin -->
-         <!-- Sets the POM so this plugin does not give the usual unregistered goals
-            errors -->
-         <!-- It will be activated automatically on Eclipse if this has the m2e plugin,
-            by detecting the version property -->
-         <id>eclipse-maven</id>
-         <activation>
-            <property>
-               <name>m2e.version</name>
-            </property>
-         </activation>
-         <build>
-            <pluginManagement>
-               <plugins>
-                  <plugin>
-                     <!-- m2e lifecycle mapping -->
-                     <!-- This is used to configure the Maven plugin for Eclipse. -->
-                     <!-- Among other things, it allows registering goals, which
-                        Eclipse would otherwise reject. -->
-                     <!-- It has no real effect on Maven. -->
-                     <groupId>org.eclipse.m2e</groupId>
-                     <artifactId>lifecycle-mapping</artifactId>
-                     <configuration>
-                        <!-- Sample fix for plugin executions. -->
-                        <!-- This is to be used in case a Maven plugin gives problems
-                           in Eclipse -->
-                        <!-- <lifecycleMappingMetadata> <pluginExecutions> <pluginExecution>
-                           <pluginExecutionFilter> <groupId>org.jacoco</groupId> <artifactId>jacoco-maven-plugin</artifactId>
-                           <versionRange>[0.5,)</versionRange> <goals> <goal>prepare-agent</goal> </goals> </pluginExecutionFilter>
-                           <action> <ignore /> </action> </pluginExecution> </pluginExecutions> </lifecycleMappingMetadata> -->
-                        <downloadSources>true</downloadSources>
-                        <downloadJavadocs>true</downloadJavadocs>
-                     </configuration>
-                  </plugin>
-               </plugins>
-            </pluginManagement>
-         </build>
-      </profile>
       <!-- ============================================== -->
       <!-- ============ DEPLOYMENT PROFILES ============= -->
       <!-- ============================================== -->
@@ -216,30 +177,38 @@
       <!-- ============================================== -->
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
-      <bytebuddy.version>1.11.13</bytebuddy.version>
+      <bytebuddy.version>1.12.10</bytebuddy.version>
       <caffeine.version>2.6.2</caffeine.version>
-      <h2.version>2.1.210</h2.version>
+      <h2.version>2.1.214</h2.version>
       <hibernate.validator.version>5.4.3.Final</hibernate.validator.version>
-      <hibernate.version>5.5.6.Final</hibernate.version>
+      <hibernate.ehcache.version>5.6.10.Final</hibernate.ehcache.version>
+      <hibernate.version>5.6.10.Final</hibernate.version>
       <hikari.version>5.0.1</hikari.version>
       <hamcrest.version>2.2</hamcrest.version>
-      <jackson.version>2.13.1</jackson.version>
+      <jackson.version>2.13.3</jackson.version>
       <jpa.version>2.2</jpa.version>
-      <jsonpath.version>2.6.0</jsonpath.version>
-      <junit.jupiter.version>5.8.2</junit.jupiter.version>
-      <liquibase.version>4.8.0</liquibase.version>
-      <log4j.version>2.17.1</log4j.version>
-      <lombok.version>1.18.22</lombok.version>
-      <mockito.version>4.3.1</mockito.version>
+      <jsonpath.version>2.7.0</jsonpath.version>
+      <junit.jupiter.version>5.9.0</junit.jupiter.version>
+      <liquibase.version>4.12.0</liquibase.version>
+      <log4j.version>2.18.0</log4j.version>
+      <lombok.version>1.18.24</lombok.version>
+      <mockito.version>4.6.1</mockito.version>
       <servlet.version>4.0.1</servlet.version>
       <slf4j.version>1.7.36</slf4j.version>
-      <spring.boot.version>2.6.3</spring.boot.version>
-      <spring.data.version>2021.1.2</spring.data.version>
-      <spring.version>5.3.16</spring.version>
+      <spring.boot.version>2.7.2</spring.boot.version>
+      <spring.data.version>2021.2.2</spring.data.version>
+      <spring.version>5.3.22</spring.version>
+      <springdoc.version>1.6.9</springdoc.version>
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
       <!-- ============================================== -->
+      <plugin.enforcer.version>3.0.0</plugin.enforcer.version>
       <plugin.spring.boot.version>${spring.boot.version}</plugin.spring.boot.version>
+      <!-- ============================================== -->
+      <!-- ============ PLUGIN CONFIGURATION ============ -->
+      <!-- ============================================== -->
+      <!-- Checkstyle customized rules file -->
+      <checkstyle.config.location>${project.basedir}/src/config/checkstyle/checkstyle-rules.xml</checkstyle.config.location>
       <!-- ============================================== -->
       <!-- ================= MAVEN SITE ================= -->
       <!-- ============================================== -->
@@ -410,7 +379,7 @@
          <!-- Hibernate Ehcache -->
          <groupId>org.hibernate</groupId>
          <artifactId>hibernate-ehcache</artifactId>
-         <version>${hibernate.version}</version>
+         <version>${hibernate.ehcache.version}</version>
       </dependency>
       <dependency>
          <!-- Hibernate validator -->
@@ -518,6 +487,14 @@
          <!-- Jackson annotations -->
          <groupId>com.fasterxml.jackson.core</groupId>
          <artifactId>jackson-annotations</artifactId>
+      </dependency>
+      <!-- ============================================== -->
+      <!-- ================ API DOCS ==================== -->
+      <!-- ============================================== -->
+      <dependency>
+         <groupId>org.springdoc</groupId>
+         <artifactId>springdoc-openapi-ui</artifactId>
+         <version>${springdoc.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- =========== VERSION ENFORCEMENT ============== -->
@@ -669,17 +646,6 @@
 
    <reporting>
       <plugins>
-         <plugin>
-            <!-- Checkstyle -->
-            <!-- Checks that the source files comply with style standards -->
-            <!-- It is using a customized rules file -->
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-checkstyle-plugin</artifactId>
-            <configuration>
-               <!-- The customized rules file -->
-               <configLocation>${project.basedir}/src/config/checkstyle/checkstyle-rules.xml</configLocation>
-            </configuration>
-         </plugin>
          <plugin>
             <!-- PMD -->
             <!-- Checks that the code complies with a series of code quality 

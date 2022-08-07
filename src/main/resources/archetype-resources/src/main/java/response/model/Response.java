@@ -22,43 +22,23 @@
  * SOFTWARE.
  */
 
-package ${package}.config;
-
-import java.util.List;
-
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import ${package}.pagination.argument.PaginationArgumentResolver;
-import ${package}.pagination.argument.SortArgumentResolver;
+package ${package}.response.model;
 
 /**
- * Web configuration.
- * 
+ * Response to the frontend.
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
+ * @param <T>
+ *            response content type
  */
-@Configuration
-public class WebConfiguration implements WebMvcConfigurer {
+public interface Response<T> {
 
     /**
-     * Default constructor.
+     * Returns the response content.
+     *
+     * @return the response content
      */
-    public WebConfiguration() {
-        super();
-    }
-
-    @Override
-    public void addArgumentResolvers(final List<HandlerMethodArgumentResolver> argumentResolvers) {
-        argumentResolvers.add(new PaginationArgumentResolver());
-        argumentResolvers.add(new SortArgumentResolver());
-    }
-
-    @Override
-    public void addCorsMappings(final CorsRegistry registry) {
-        registry.addMapping("/**");
-    }
+    public T getContent();
 
 }

@@ -22,43 +22,45 @@
  * SOFTWARE.
  */
 
-package ${package}.config;
+package ${package}.response.model;
 
-import java.util.List;
-
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import ${package}.pagination.argument.PaginationArgumentResolver;
-import ${package}.pagination.argument.SortArgumentResolver;
+import lombok.Data;
+import lombok.NonNull;
 
 /**
- * Web configuration.
- * 
+ * Default implementation of the response.
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
+ * @param <T>
+ *            response content type
  */
-@Configuration
-public class WebConfiguration implements WebMvcConfigurer {
+@Data
+public class DefaultResponse<T> implements Response<T> {
+
+    /**
+     * Response content.
+     */
+    @NonNull
+    private T content;
 
     /**
      * Default constructor.
      */
-    public WebConfiguration() {
+    public DefaultResponse() {
         super();
     }
 
-    @Override
-    public void addArgumentResolvers(final List<HandlerMethodArgumentResolver> argumentResolvers) {
-        argumentResolvers.add(new PaginationArgumentResolver());
-        argumentResolvers.add(new SortArgumentResolver());
-    }
+    /**
+     * Constructs a response with the specified content.
+     *
+     * @param cont
+     *            content
+     */
+    public DefaultResponse(@NonNull final T cont) {
+        super();
 
-    @Override
-    public void addCorsMappings(final CorsRegistry registry) {
-        registry.addMapping("/**");
+        content = cont;
     }
 
 }
