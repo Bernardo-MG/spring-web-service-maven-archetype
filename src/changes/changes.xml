@@ -21,7 +21,13 @@
             Updated dependencies.
          </action>
       </release>
-      <release version="1.1.0" date="2022-02-23" description="">
+      <release version="1.1.0" date="2022-08-07" description="Reworked structure">
+         <action dev="bmg" type="update">
+            Reworked generated app structure.
+         </action>
+         <action dev="bmg" type="update">
+            Updated dependencies.
+         </action>
       </release>
    </body>
 </document>
