@@ -30,6 +30,9 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
+import com.bernardomg.pagination.model.Direction;
+import com.bernardomg.pagination.model.Sort;
+
 import ${package}.pagination.model.Direction;
 import ${package}.pagination.model.Sort;
 
@@ -70,7 +73,7 @@ public final class SortArgumentResolver implements HandlerMethodArgumentResolver
             property = webRequest.getParameter("property");
             directionText = webRequest.getParameter("direction");
 
-            if ((property == null) && (directionText == null)) {
+            if (property == null) {
                 // No sort parameters
                 log.trace("No sorting data received, using disabled sort");
                 sort = Sort.disabled();
