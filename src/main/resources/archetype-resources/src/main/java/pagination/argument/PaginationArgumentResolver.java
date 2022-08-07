@@ -30,6 +30,8 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
+import com.bernardomg.pagination.model.Pagination;
+
 import ${package}.pagination.model.Pagination;
 
 import lombok.extern.slf4j.Slf4j;
@@ -51,18 +53,20 @@ public final class PaginationArgumentResolver implements HandlerMethodArgumentRe
     }
 
     @Override
-    public final Pagination resolveArgument(final MethodParameter parameter, final ModelAndViewContainer mavContainer,
-            final NativeWebRequest webRequest, final WebDataBinderFactory binderFactory) throws Exception {
-        final String     pagedText;
-        final String     pageText;
-        final String     sizeText;
-        final Boolean    paged;
-        final Integer    page;
-        final Integer    size;
+    public final Pagination resolveArgument(final MethodParameter parameter,
+            final ModelAndViewContainer mavContainer,
+            final NativeWebRequest webRequest,
+            final WebDataBinderFactory binderFactory) throws Exception {
+        final String pagedText;
+        final String pageText;
+        final String sizeText;
+        final Boolean paged;
+        final Integer page;
+        final Integer size;
         final Pagination pagination;
 
         pagedText = webRequest.getParameter("paged");
-        paged = parsePaged(pagedText);
+        paged = parseBoolean(pagedText);
 
         if (paged) {
             pageText = webRequest.getParameter("page");
@@ -70,10 +74,11 @@ public final class PaginationArgumentResolver implements HandlerMethodArgumentRe
 
             if ((pageText == null) && (sizeText == null)) {
                 // No pagination parameters
+                log.trace(
+                    "No pagination data received, using disabled pagination");
                 pagination = Pagination.first();
-                log.trace("No pagination received, using disabled pagination");
             } else {
-                page = parsePage(pageText);
+                page = parseInteger(pageText);
                 size = parseSize(sizeText);
 
                 log.trace("Building page {} with size {}", page, size);
@@ -86,6 +91,8 @@ public final class PaginationArgumentResolver implements HandlerMethodArgumentRe
                 }
             }
         } else {
+            // No pagination
+            log.trace("Pagination disabled for request");
             pagination = Pagination.disabled();
         }
 
@@ -98,41 +105,41 @@ public final class PaginationArgumentResolver implements HandlerMethodArgumentRe
     }
 
     /**
-     * Transforms the page text into its numeric value.
+     * Transforms the text into its boolean value.
      *
-     * @param pageText
-     *            text with the pagination page
-     * @return page as integer
+     * @param text
+     *            text with the boolean flag
+     * @return paged as boolean
      */
-    private final Integer parsePage(final String pageText) {
-        final Integer page;
+    private final Boolean parseBoolean(final String text) {
+        final Boolean result;
 
-        if (pageText == null) {
-            page = 0;
+        if (text == null) {
+            result = true;
         } else {
-            page = Integer.valueOf(pageText);
+            result = Boolean.valueOf(text);
         }
 
-        return page;
+        return result;
     }
 
     /**
-     * Transforms the paged text into its boolean value.
+     * Transforms the text into its numeric value.
      *
-     * @param pagedText
-     *            text with the pagination paged flag
-     * @return paged as boolean
+     * @param text
+     *            text with the integer page
+     * @return page as integer
      */
-    private final Boolean parsePaged(final String pagedText) {
-        final Boolean paged;
+    private final Integer parseInteger(final String text) {
+        final Integer page;
 
-        if (pagedText == null) {
-            paged = true;
+        if (text == null) {
+            page = 0;
         } else {
-            paged = Boolean.valueOf(pagedText);
+            page = Integer.valueOf(text);
         }
 
-        return paged;
+        return page;
     }
 
     /**

@@ -30,6 +30,9 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
+import com.bernardomg.pagination.model.Direction;
+import com.bernardomg.pagination.model.Sort;
+
 import ${package}.pagination.model.Direction;
 import ${package}.pagination.model.Sort;
 
@@ -52,47 +55,43 @@ public final class SortArgumentResolver implements HandlerMethodArgumentResolver
     }
 
     @Override
-    public final Sort resolveArgument(final MethodParameter parameter, final ModelAndViewContainer mavContainer,
-            final NativeWebRequest webRequest, final WebDataBinderFactory binderFactory) throws Exception {
-        final String    sortText;
-        final String    property;
-        final String[]  sortPieces;
+    public final Sort resolveArgument(final MethodParameter parameter,
+            final ModelAndViewContainer mavContainer,
+            final NativeWebRequest webRequest,
+            final WebDataBinderFactory binderFactory) throws Exception {
+        final String sortedText;
+        final String property;
+        final String directionText;
+        final Boolean sorted;
         final Direction direction;
-        final Sort      sort;
-        final String    rawDirection;
+        final Sort sort;
 
-        sortText = webRequest.getParameter("sort");
+        sortedText = webRequest.getParameter("sorted");
+        sorted = parseBoolean(sortedText);
 
-        if (sortText == null) {
-            // No sort
-            sort = Sort.disabled();
-            log.trace("No sort received, using disabled sort");
-        } else {
-            log.trace("Received sort code: {}", sortText);
-            sortPieces = sortText.split(",");
+        if (sorted) {
+            property = webRequest.getParameter("property");
+            directionText = webRequest.getParameter("direction");
 
-            if (sortPieces.length == 0) {
-                // Invalid sort
+            if ((property == null) && (directionText == null)) {
+                // No sort parameters
+                log.trace("No sorting data received, using disabled sort");
                 sort = Sort.disabled();
-                log.warn("Invalid sort command: {}. Disabling sort", sortText);
             } else {
-                property = sortPieces[0];
-
-                if (sortPieces.length == 1) {
-                    // No direction
-                    direction = Direction.ASC;
-                    log.trace("No sort direction received, using default direction: {}", direction);
+                if ("desc".equalsIgnoreCase(directionText)) {
+                    direction = Direction.DESC;
                 } else {
-                    rawDirection = sortPieces[1].toLowerCase();
-                    if ("desc".equals(rawDirection)) {
-                        direction = Direction.DESC;
-                    } else {
-                        direction = Direction.ASC;
-                    }
+                    direction = Direction.ASC;
                 }
-                log.trace("Sorting by property {} and direction {}", property, direction);
+
+                log.trace("Sorting by property {} and direction {}", property,
+                    direction);
                 sort = Sort.of(property, direction);
             }
+        } else {
+            // No sort
+            log.trace("Trace disabled for request");
+            sort = Sort.disabled();
         }
 
         return sort;
@@ -101,6 +100,25 @@ public final class SortArgumentResolver implements HandlerMethodArgumentResolver
     @Override
     public final boolean supportsParameter(final MethodParameter parameter) {
         return Sort.class.equals(parameter.getParameterType());
+    }
+
+    /**
+     * Transforms the text into its boolean value.
+     *
+     * @param text
+     *            text with the boolean flag
+     * @return paged as boolean
+     */
+    private final Boolean parseBoolean(final String text) {
+        final Boolean result;
+
+        if (text == null) {
+            result = true;
+        } else {
+            result = Boolean.valueOf(text);
+        }
+
+        return result;
     }
 
 }
