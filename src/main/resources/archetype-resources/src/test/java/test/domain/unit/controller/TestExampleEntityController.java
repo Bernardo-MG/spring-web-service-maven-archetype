@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package ${package}.test.unit.controller;
+package ${package}.test.domain.unit.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;

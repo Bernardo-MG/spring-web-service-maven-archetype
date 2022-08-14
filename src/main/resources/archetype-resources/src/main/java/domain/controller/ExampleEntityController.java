@@ -52,13 +52,13 @@ public class ExampleEntityController {
     /**
      * Constructs a controller with the specified dependencies.
      *
-     * @param service
+     * @param srvc
      *            example entity service
      */
-    public ExampleEntityController(final ExampleEntityService service) {
+    public ExampleEntityController(final ExampleEntityService srvc) {
         super();
 
-        exampleEntityService = Objects.requireNonNull(service,
+        exampleEntityService = Objects.requireNonNull(srvc,
             "Received a null pointer as service");
     }
 

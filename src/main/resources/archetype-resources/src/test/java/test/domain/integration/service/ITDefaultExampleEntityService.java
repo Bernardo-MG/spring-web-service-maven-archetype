@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package ${package}.test.integration.domain.service;
+package ${package}.test.domain.integration.service;
 
 import org.apache.commons.collections4.IterableUtils;
 import org.junit.jupiter.api.Assertions;
