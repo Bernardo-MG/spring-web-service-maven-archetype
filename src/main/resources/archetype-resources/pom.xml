@@ -232,6 +232,14 @@
             <scope>import</scope>
          </dependency>
          <dependency>
+            <!-- Spring Boot Dependencies BOM -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-dependencies</artifactId>
+            <version>${spring.boot.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+         </dependency>
+         <dependency>
             <!-- Spring Data BOM -->
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-bom</artifactId>
