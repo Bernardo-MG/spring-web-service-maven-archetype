@@ -38,6 +38,8 @@ import ${package}.pagination.model.Pagination;
 import ${package}.pagination.model.Sort;
 import ${package}.pagination.utils.Paginations;
 
+import lombok.AllArgsConstructor;
+
 /**
  * Default implementation of the example entity service.
  *
@@ -45,27 +47,13 @@ import ${package}.pagination.utils.Paginations;
  *
  */
 @Service
+@AllArgsConstructor
 public class DefaultExampleEntityService implements ExampleEntityService {
 
     /**
      * Repository for the domain entities handled by the service.
      */
     private final ExampleEntityRepository repository;
-
-    /**
-     * Constructs an entities service with the specified repository.
-     *
-     * @param repo
-     *            the repository for the entity instances
-     */
-    @Autowired
-    public DefaultExampleEntityService(
-            final ExampleEntityRepository repo) {
-        super();
-
-        repository = Objects.requireNonNull(repo,
-            "Received a null pointer as repository");
-    }
 
     @Override
     public final PageIterable<PersistentExampleEntity>
