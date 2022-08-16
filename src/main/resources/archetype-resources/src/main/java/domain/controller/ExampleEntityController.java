@@ -74,7 +74,7 @@ public class ExampleEntityController {
     @GetMapping
     public Iterable<? extends ExampleEntity> read(final Pagination pagination,
             final Sort sort) {
-        return exampleEntityService.getAllEntities(pagination, sort);
+        return exampleEntityService.getAll(pagination, sort);
     }
 
 }

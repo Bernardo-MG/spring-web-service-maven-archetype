@@ -69,7 +69,7 @@ public class DefaultExampleEntityService implements ExampleEntityService {
 
     @Override
     public final PageIterable<PersistentExampleEntity>
-            getAllEntities(final Pagination pagination, final Sort sort) {
+            getAll(final Pagination pagination, final Sort sort) {
         final Pageable pageable;
         final Page<PersistentExampleEntity> page;
 
