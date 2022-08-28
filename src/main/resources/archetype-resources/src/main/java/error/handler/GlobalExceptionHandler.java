@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package ${package}.error;
+package ${package}.error.handler;
 
 import java.util.stream.Collectors;
 
@@ -35,6 +35,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import ${package}.error.model.FieldError;
 import ${package}.response.model.DefaultResponse;
 import ${package}.response.model.Response;
 
@@ -86,15 +87,16 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(final MethodArgumentNotValidException ex,
             final HttpHeaders headers, final HttpStatus status, final WebRequest request) {
-        final Iterable<String>           errors;
-        final Response<Iterable<String>> response;
+        final Iterable<FieldError>           errors;
+        final Response<Iterable<FieldError>> response;
 
-        log.error(ex.getMessage(), ex);
+        log.error(ex.getMessage());
 
         errors = ex.getBindingResult()
             .getFieldErrors()
             .stream()
-            .map(x -> x.getDefaultMessage())
+            .map(error -> FieldError.of(error.getDefaultMessage(), error.getObjectName(), error.getField(),
+                error.getRejectedValue()))
             .collect(Collectors.toList());
 
         response = new DefaultResponse<>(errors);
