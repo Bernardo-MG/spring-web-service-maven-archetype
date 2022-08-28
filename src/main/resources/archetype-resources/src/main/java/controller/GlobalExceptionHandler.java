@@ -26,8 +26,6 @@ package ${package}.controller;
 
 import java.util.stream.Collectors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,19 +38,16 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import ${package}.response.model.DefaultResponse;
 import ${package}.response.model.Response;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Captures and handles exceptions for all the controllers.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @ControllerAdvice
+@Slf4j
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-
-    /**
-     * Logger for the exception handler.
-     */
-    private static final Logger LOGGER = LoggerFactory
-        .getLogger(GlobalExceptionHandler.class);
 
     /**
      * Default constructor.
@@ -62,19 +57,20 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler({ RuntimeException.class })
-    public final ResponseEntity<Object> handleExceptionDefault(
-            final Exception ex, final WebRequest request) throws Exception {
-        LOGGER.error(ex.getMessage(), ex);
+    public final ResponseEntity<Object> handleExceptionDefault(final Exception ex, final WebRequest request)
+            throws Exception {
+        log.error(ex.getMessage(), ex);
 
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @Override
-    protected ResponseEntity<Object> handleExceptionInternal(final Exception ex,
-            final Object body, final HttpHeaders headers,
-            final HttpStatus status, final WebRequest request) {
+    protected ResponseEntity<Object> handleExceptionInternal(final Exception ex, final Object body,
+            final HttpHeaders headers, final HttpStatus status, final WebRequest request) {
         final Response<String> response;
-        final String message;
+        final String           message;
+
+        log.error(ex.getMessage(), ex);
 
         if (ex.getMessage() == null) {
             message = "";
@@ -84,16 +80,16 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
         response = new DefaultResponse<>(message);
 
-        return super.handleExceptionInternal(ex, response, headers, status,
-            request);
+        return super.handleExceptionInternal(ex, response, headers, status, request);
     }
 
     @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(
-            final MethodArgumentNotValidException ex, final HttpHeaders headers,
-            final HttpStatus status, final WebRequest request) {
-        final Iterable<String> errors;
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(final MethodArgumentNotValidException ex,
+            final HttpHeaders headers, final HttpStatus status, final WebRequest request) {
+        final Iterable<String>           errors;
         final Response<Iterable<String>> response;
+
+        log.error(ex.getMessage(), ex);
 
         errors = ex.getBindingResult()
             .getFieldErrors()
@@ -103,8 +99,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
         response = new DefaultResponse<>(errors);
 
-        return super.handleExceptionInternal(ex, response, headers, status,
-            request);
+        return super.handleExceptionInternal(ex, response, headers, status, request);
     }
 
 }
