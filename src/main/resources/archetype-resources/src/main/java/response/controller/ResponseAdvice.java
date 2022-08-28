@@ -51,7 +51,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-@ControllerAdvice("com.bernardomg")
+@ControllerAdvice("${package}")
 @Slf4j
 public class ResponseAdvice implements ResponseBodyAdvice<Object> {
 
