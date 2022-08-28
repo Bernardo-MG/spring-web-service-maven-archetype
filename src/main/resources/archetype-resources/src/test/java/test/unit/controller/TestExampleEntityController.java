@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package ${package}.test.domain.unit.controller;
+package ${package}.test.unit.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -65,7 +65,8 @@ public final class TestExampleEntityController {
     public final void setUpMockContext() {
         mockMvc = MockMvcBuilders.standaloneSetup(getController())
             .setControllerAdvice(ResponseAdvice.class)
-            .setCustomArgumentResolvers(new PaginationArgumentResolver(), new SortArgumentResolver())
+            .setCustomArgumentResolvers(new PaginationArgumentResolver(),
+                new SortArgumentResolver())
             .alwaysExpect(MockMvcResultMatchers.status()
                 .isOk())
             .alwaysExpect(MockMvcResultMatchers.content()
@@ -85,18 +86,19 @@ public final class TestExampleEntityController {
             .isOk());
 
         // The response model contains the expected attributes
-        result.andExpect(MockMvcResultMatchers.jsonPath("$.content", Matchers.hasSize(3)));
+        result.andExpect(
+            MockMvcResultMatchers.jsonPath("$.content", Matchers.hasSize(3)));
     }
 
     /**
      * Returns a controller with mocked dependencies.
-     *
+     * 
      * @return a controller with mocked dependencies
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
     private final ExampleEntityController getController() {
-        final ExampleEntityService               service;
-        final Collection<ExampleEntity>          entities;
+        final ExampleEntityService service;
+        final Collection<ExampleEntity> entities;
         final DefaultPageIterable<ExampleEntity> pageIterable;
 
         service = Mockito.mock(ExampleEntityService.class);
@@ -109,7 +111,9 @@ public final class TestExampleEntityController {
         pageIterable = new DefaultPageIterable();
         pageIterable.setContent(entities);
 
-        Mockito.when(service.getAll(ArgumentMatchers.any(), ArgumentMatchers.any()))
+        Mockito
+            .when(
+                service.getAll(ArgumentMatchers.any(), ArgumentMatchers.any()))
             .thenReturn((PageIterable) pageIterable);
 
         return new ExampleEntityController(service);
@@ -117,7 +121,7 @@ public final class TestExampleEntityController {
 
     /**
      * Returns a request builder prepared for reading entities.
-     *
+     * 
      * @return a request builder prepared for reading entities
      */
     private final RequestBuilder getGetRequest() {

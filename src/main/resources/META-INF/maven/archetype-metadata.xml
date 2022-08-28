@@ -5,7 +5,7 @@
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="spring-web-service-maven-archetype">
    <requiredProperties>
       <requiredProperty key="projectName">
-         <defaultValue>Basic Maven Project</defaultValue>
+         <defaultValue>Spring Web Service Maven Project</defaultValue>
       </requiredProperty>
       <requiredProperty key="projectDescription">
          <defaultValue>A Maven project created from the Spring web service archetype.</defaultValue>

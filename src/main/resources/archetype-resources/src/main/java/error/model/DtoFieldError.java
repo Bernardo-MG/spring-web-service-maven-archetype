@@ -22,31 +22,25 @@
  * SOFTWARE.
  */
 
-package ${package}.domain.service;
+package ${package}.error.model;
 
-import ${package}.domain.model.ExampleEntity;
-import ${package}.pagination.model.PageIterable;
-import ${package}.pagination.model.Pagination;
-import ${package}.pagination.model.Sort;
+import lombok.Data;
 
 /**
- * Service for the example entity domain.
- * <p>
- * This is a domain service just to allow the endpoints querying the entities they are asked for.
+ * DTO implementation of {@code FieldValidationError}.
  *
  * @author Bernardo Mart&iacute;nez Garrido
+ *
  */
-public interface ExampleEntityService {
+@Data
+public final class DtoFieldError implements FieldError {
 
-    /**
-     * Returns all the entities from the DB.
-     *
-     * @param pagination
-     *            requested page info
-     * @param sort
-     *            requested sort info
-     * @return the persisted entities
-     */
-    public PageIterable<? extends ExampleEntity> getAll(final Pagination pagination, final Sort sort);
+    private String field;
+
+    private String message;
+
+    private String object;
+
+    private Object value;
 
 }

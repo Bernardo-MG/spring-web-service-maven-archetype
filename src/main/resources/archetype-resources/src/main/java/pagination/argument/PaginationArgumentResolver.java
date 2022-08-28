@@ -51,16 +51,14 @@ public final class PaginationArgumentResolver implements HandlerMethodArgumentRe
     }
 
     @Override
-    public final Pagination resolveArgument(final MethodParameter parameter,
-            final ModelAndViewContainer mavContainer,
-            final NativeWebRequest webRequest,
-            final WebDataBinderFactory binderFactory) throws Exception {
-        final String pagedText;
-        final String pageText;
-        final String sizeText;
-        final Boolean paged;
-        final Integer page;
-        final Integer size;
+    public final Pagination resolveArgument(final MethodParameter parameter, final ModelAndViewContainer mavContainer,
+            final NativeWebRequest webRequest, final WebDataBinderFactory binderFactory) throws Exception {
+        final String     pagedText;
+        final String     pageText;
+        final String     sizeText;
+        final Boolean    paged;
+        final Integer    page;
+        final Integer    size;
         final Pagination pagination;
 
         pagedText = webRequest.getParameter("paged");
@@ -72,8 +70,7 @@ public final class PaginationArgumentResolver implements HandlerMethodArgumentRe
 
             if ((pageText == null) && (sizeText == null)) {
                 // No pagination parameters
-                log.trace(
-                    "No pagination data received, using disabled pagination");
+                log.trace("No pagination data received, using disabled pagination");
                 pagination = Pagination.first();
             } else {
                 page = parseInteger(pageText);

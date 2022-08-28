@@ -24,8 +24,6 @@
 
 package ${package}.domain.controller;
 
-import java.util.Objects;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,6 +33,8 @@ import ${package}.domain.service.ExampleEntityService;
 import ${package}.pagination.model.Pagination;
 import ${package}.pagination.model.Sort;
 
+import lombok.AllArgsConstructor;
+
 /**
  * Rest controller for the example entities.
  *
@@ -42,25 +42,13 @@ import ${package}.pagination.model.Sort;
  */
 @RestController
 @RequestMapping("/entity")
+@AllArgsConstructor
 public class ExampleEntityController {
 
     /**
      * Example entity service.
      */
     private final ExampleEntityService exampleEntityService;
-
-    /**
-     * Constructs a controller with the specified dependencies.
-     *
-     * @param srvc
-     *            example entity service
-     */
-    public ExampleEntityController(final ExampleEntityService srvc) {
-        super();
-
-        exampleEntityService = Objects.requireNonNull(srvc,
-            "Received a null pointer as service");
-    }
 
     /**
      * Returns a collection of entities.
@@ -72,9 +60,8 @@ public class ExampleEntityController {
      * @return a collection of entities
      */
     @GetMapping
-    public Iterable<? extends ExampleEntity> read(final Pagination pagination,
-            final Sort sort) {
-        return exampleEntityService.getAllEntities(pagination, sort);
+    public Iterable<? extends ExampleEntity> read(final Pagination pagination, final Sort sort) {
+        return exampleEntityService.getAll(pagination, sort);
     }
 
 }

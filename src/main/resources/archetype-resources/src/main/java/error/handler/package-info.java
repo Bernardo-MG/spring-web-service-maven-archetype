@@ -22,31 +22,8 @@
  * SOFTWARE.
  */
 
-package ${package}.domain.service;
-
-import ${package}.domain.model.ExampleEntity;
-import ${package}.pagination.model.PageIterable;
-import ${package}.pagination.model.Pagination;
-import ${package}.pagination.model.Sort;
-
 /**
- * Service for the example entity domain.
- * <p>
- * This is a domain service just to allow the endpoints querying the entities they are asked for.
- *
- * @author Bernardo Mart&iacute;nez Garrido
+ * Error handling classes.
  */
-public interface ExampleEntityService {
 
-    /**
-     * Returns all the entities from the DB.
-     *
-     * @param pagination
-     *            requested page info
-     * @param sort
-     *            requested sort info
-     * @return the persisted entities
-     */
-    public PageIterable<? extends ExampleEntity> getAll(final Pagination pagination, final Sort sort);
-
-}
+package ${package}.error.handler;

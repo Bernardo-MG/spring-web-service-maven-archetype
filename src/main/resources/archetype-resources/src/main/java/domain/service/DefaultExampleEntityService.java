@@ -24,8 +24,6 @@
 
 package ${package}.domain.service;
 
-import java.util.Objects;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -37,6 +35,8 @@ import ${package}.pagination.model.Pagination;
 import ${package}.pagination.model.Sort;
 import ${package}.pagination.utils.Paginations;
 
+import lombok.AllArgsConstructor;
+
 /**
  * Default implementation of the example entity service.
  *
@@ -44,6 +44,7 @@ import ${package}.pagination.utils.Paginations;
  *
  */
 @Service
+@AllArgsConstructor
 public class DefaultExampleEntityService implements ExampleEntityService {
 
     /**
@@ -51,24 +52,9 @@ public class DefaultExampleEntityService implements ExampleEntityService {
      */
     private final ExampleEntityRepository repository;
 
-    /**
-     * Constructs an entities service with the specified repository.
-     *
-     * @param repo
-     *            the repository for the entity instances
-     */
-    public DefaultExampleEntityService(
-            final ExampleEntityRepository repo) {
-        super();
-
-        repository = Objects.requireNonNull(repo,
-            "Received a null pointer as repository");
-    }
-
     @Override
-    public final PageIterable<PersistentExampleEntity>
-            getAllEntities(final Pagination pagination, final Sort sort) {
-        final Pageable pageable;
+    public final PageIterable<PersistentExampleEntity> getAll(final Pagination pagination, final Sort sort) {
+        final Pageable                      pageable;
         final Page<PersistentExampleEntity> page;
 
         pageable = Paginations.toSpring(pagination, sort);

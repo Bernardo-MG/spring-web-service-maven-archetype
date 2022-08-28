@@ -23,7 +23,7 @@
  */
 
 /**
- * Error classes.
+ * Error model.
  */
 
-package ${package}.error;
+package ${package}.error.model;

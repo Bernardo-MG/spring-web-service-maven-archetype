@@ -37,8 +37,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ${package}.Application;
 
 @SpringJUnitConfig
-@Transactional
 @SpringBootTest(classes = Application.class)
+@Transactional
 @Rollback
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
