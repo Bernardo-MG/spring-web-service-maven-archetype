@@ -47,8 +47,7 @@ public class DefaultExampleEntity implements ExampleEntity {
     /**
      * Name of the entity.
      * <p>
-     * This is to have additional data apart from the id, to be used on the
-     * tests.
+     * This is to have additional data apart from the id, to be used on the tests.
      */
     private String            name             = "";
 

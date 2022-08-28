@@ -60,7 +60,7 @@ public class ITDefaultExampleEntityService {
         pagination = new DisabledPagination();
         sort = new DisabledSort();
 
-        result = service.getAllEntities(pagination, sort);
+        result = service.getAll(pagination, sort);
 
         Assertions.assertEquals(30, IterableUtils.size(result));
     }

@@ -86,9 +86,8 @@ public final class TestExampleEntityController {
             .isOk());
 
         // The response model contains the expected attributes
-        result
-            .andExpect(MockMvcResultMatchers.jsonPath("$.content",
-                Matchers.hasSize(3)));
+        result.andExpect(
+            MockMvcResultMatchers.jsonPath("$.content", Matchers.hasSize(3)));
     }
 
     /**
@@ -113,8 +112,8 @@ public final class TestExampleEntityController {
         pageIterable.setContent(entities);
 
         Mockito
-            .when(service.getAll(ArgumentMatchers.any(),
-                ArgumentMatchers.any()))
+            .when(
+                service.getAll(ArgumentMatchers.any(), ArgumentMatchers.any()))
             .thenReturn((PageIterable) pageIterable);
 
         return new ExampleEntityController(service);

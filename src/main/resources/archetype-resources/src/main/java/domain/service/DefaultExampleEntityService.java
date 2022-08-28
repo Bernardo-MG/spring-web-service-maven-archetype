@@ -24,8 +24,6 @@
 
 package ${package}.domain.service;
 
-import java.util.Objects;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -55,9 +53,8 @@ public class DefaultExampleEntityService implements ExampleEntityService {
     private final ExampleEntityRepository repository;
 
     @Override
-    public final PageIterable<PersistentExampleEntity>
-            getAll(final Pagination pagination, final Sort sort) {
-        final Pageable pageable;
+    public final PageIterable<PersistentExampleEntity> getAll(final Pagination pagination, final Sort sort) {
+        final Pageable                      pageable;
         final Page<PersistentExampleEntity> page;
 
         pageable = Paginations.toSpring(pagination, sort);
