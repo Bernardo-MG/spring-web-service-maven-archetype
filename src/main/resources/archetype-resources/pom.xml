@@ -177,23 +177,12 @@
       <!-- ============================================== -->
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
-      <bytebuddy.version>1.12.10</bytebuddy.version>
       <caffeine.version>2.6.2</caffeine.version>
-      <h2.version>2.1.214</h2.version>
+      <guava.version>31.1-jre</guava.version>
       <hibernate.validator.version>5.4.3.Final</hibernate.validator.version>
       <hibernate.ehcache.version>5.6.10.Final</hibernate.ehcache.version>
-      <hibernate.version>5.6.10.Final</hibernate.version>
-      <hikari.version>5.0.1</hikari.version>
-      <hamcrest.version>2.2</hamcrest.version>
       <jackson.version>2.13.3</jackson.version>
-      <jpa.version>2.2</jpa.version>
-      <jsonpath.version>2.7.0</jsonpath.version>
       <junit.jupiter.version>5.9.0</junit.jupiter.version>
-      <liquibase.version>4.12.0</liquibase.version>
-      <log4j.version>2.18.0</log4j.version>
-      <lombok.version>1.18.24</lombok.version>
-      <mockito.version>4.6.1</mockito.version>
-      <servlet.version>4.0.1</servlet.version>
       <slf4j.version>1.7.36</slf4j.version>
       <spring.boot.version>2.7.2</spring.boot.version>
       <spring.data.version>2021.2.2</spring.data.version>
@@ -327,7 +316,6 @@
          <!-- Spring Boot Starter: Web -->
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-starter-web</artifactId>
-         <version>${spring.boot.version}</version>
          <exclusions>
             <exclusion>
                <groupId>ch.qos.logback</groupId>
@@ -343,25 +331,21 @@
          <!-- Spring Boot Starter: AOP -->
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-starter-aop</artifactId>
-         <version>${spring.boot.version}</version>
       </dependency>
       <dependency>
          <!-- Spring Boot Starter: Cache -->
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-starter-cache</artifactId>
-         <version>${spring.boot.version}</version>
       </dependency>
       <dependency>
          <!-- Spring Boot Starter: log4j -->
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-starter-log4j2</artifactId>
-         <version>${spring.boot.version}</version>
       </dependency>
       <dependency>
          <!-- Spring Boot Starter: Devtools -->
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-devtools</artifactId>
-         <version>${spring.boot.version}</version>
          <scope>runtime</scope>
          <optional>true</optional>
       </dependency>
@@ -372,7 +356,6 @@
          <!-- JPA API -->
          <groupId>javax.persistence</groupId>
          <artifactId>javax.persistence-api</artifactId>
-         <version>${jpa.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- ================ HIBERNATE =================== -->
@@ -381,13 +364,11 @@
          <!-- Hibernate Core -->
          <groupId>org.hibernate</groupId>
          <artifactId>hibernate-core</artifactId>
-         <version>${hibernate.version}</version>
       </dependency>
       <dependency>
          <!-- Hibernate Ehcache -->
          <groupId>org.hibernate</groupId>
          <artifactId>hibernate-ehcache</artifactId>
-         <version>${hibernate.ehcache.version}</version>
       </dependency>
       <dependency>
          <!-- Hibernate validator -->
@@ -399,7 +380,6 @@
          <!-- Hikari CP -->
          <groupId>com.zaxxer</groupId>
          <artifactId>HikariCP</artifactId>
-         <version>${hikari.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- ==================== H2 ====================== -->
@@ -408,7 +388,6 @@
          <!-- H2 database -->
          <groupId>com.h2database</groupId>
          <artifactId>h2</artifactId>
-         <version>${h2.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- ================ LIQUIBASE =================== -->
@@ -417,7 +396,6 @@
          <!-- Liquibase -->
          <groupId>org.liquibase</groupId>
          <artifactId>liquibase-core</artifactId>
-         <version>${liquibase.version}</version>
          <exclusions>
             <exclusion>
                <groupId>ch.qos.logback</groupId>
@@ -432,7 +410,6 @@
          <!-- Servlet API -->
          <groupId>javax.servlet</groupId>
          <artifactId>javax.servlet-api</artifactId>
-         <version>${servlet.version}</version>
          <scope>provided</scope>
       </dependency>
       <!-- ============================================== -->
@@ -442,7 +419,6 @@
          <!-- Lombok -->
          <groupId>org.projectlombok</groupId>
          <artifactId>lombok</artifactId>
-         <version>${lombok.version}</version>
          <scope>provided</scope>
       </dependency>
       <!-- ============================================== -->
@@ -452,31 +428,26 @@
          <!-- SL4J API -->
          <groupId>org.slf4j</groupId>
          <artifactId>slf4j-api</artifactId>
-         <version>${slf4j.version}</version>
       </dependency>
       <dependency>
          <!-- Log4j SLF4J Bridge -->
          <groupId>org.apache.logging.log4j</groupId>
          <artifactId>log4j-slf4j-impl</artifactId>
-         <version>${log4j.version}</version>
       </dependency>
       <dependency>
          <!-- Log4j core -->
          <groupId>org.apache.logging.log4j</groupId>
          <artifactId>log4j-core</artifactId>
-         <version>${log4j.version}</version>
       </dependency>
       <dependency>
          <!-- Log4j Commons Logging Bridge -->
          <groupId>org.apache.logging.log4j</groupId>
          <artifactId>log4j-jcl</artifactId>
-         <version>${log4j.version}</version>
       </dependency>
       <dependency>
          <!-- Log4j Web -->
          <groupId>org.apache.logging.log4j</groupId>
          <artifactId>log4j-web</artifactId>
-         <version>${log4j.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- ================= JACKSON ==================== -->
@@ -500,6 +471,7 @@
       <!-- ================ API DOCS ==================== -->
       <!-- ============================================== -->
       <dependency>
+         <!-- Springdocs OpenAPI UI -->
          <groupId>org.springdoc</groupId>
          <artifactId>springdoc-openapi-ui</artifactId>
          <version>${springdoc.version}</version>
@@ -511,7 +483,6 @@
          <!-- Byte Buddy -->
          <groupId>net.bytebuddy</groupId>
          <artifactId>byte-buddy</artifactId>
-         <version>${bytebuddy.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->
@@ -520,14 +491,12 @@
          <!-- Hamcrest -->
          <groupId>org.hamcrest</groupId>
          <artifactId>hamcrest-core</artifactId>
-         <version>${hamcrest.version}</version>
          <scope>test</scope>
       </dependency>
       <dependency>
          <!-- JSON Path -->
          <groupId>com.jayway.jsonpath</groupId>
          <artifactId>json-path</artifactId>
-         <version>${jsonpath.version}</version>
          <scope>test</scope>
       </dependency>
       <dependency>
@@ -553,7 +522,13 @@
          <!-- Mockito -->
          <groupId>org.mockito</groupId>
          <artifactId>mockito-core</artifactId>
-         <version>${mockito.version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <!-- Guava -->
+         <groupId>com.google.guava</groupId>
+         <artifactId>guava</artifactId>
+         <version>${guava.version}</version>
          <scope>test</scope>
       </dependency>
       <dependency>
@@ -566,7 +541,6 @@
          <!-- Spring Boot Starter: Test -->
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-starter-test</artifactId>
-         <version>${spring.boot.version}</version>
          <scope>test</scope>
          <exclusions>
             <exclusion>
