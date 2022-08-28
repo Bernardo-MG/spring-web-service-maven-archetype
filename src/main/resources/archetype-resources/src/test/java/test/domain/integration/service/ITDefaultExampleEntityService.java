@@ -22,49 +22,47 @@
  * SOFTWARE.
  */
 
-package ${package}.domain.service;
+package ${package}.test.domain.integration.service;
 
-import java.util.Objects;
+import org.apache.commons.collections4.IterableUtils;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-
-import ${package}.domain.model.PersistentExampleEntity;
-import ${package}.domain.repository.ExampleEntityRepository;
+import ${package}.domain.model.ExampleEntity;
+import ${package}.domain.service.DefaultExampleEntityService;
+import ${package}.pagination.model.DisabledPagination;
+import ${package}.pagination.model.DisabledSort;
 import ${package}.pagination.model.PageIterable;
 import ${package}.pagination.model.Pagination;
 import ${package}.pagination.model.Sort;
-import ${package}.pagination.utils.Paginations;
+import ${package}.test.config.annotation.IntegrationTest;
 
-import lombok.AllArgsConstructor;
+@IntegrationTest
+@DisplayName("Default entity service")
+public class ITDefaultExampleEntityService {
 
-/**
- * Default implementation of the example entity service.
- *
- * @author Bernardo Mart&iacute;nez Garrido
- *
- */
-@Service
-@AllArgsConstructor
-public class DefaultExampleEntityService implements ExampleEntityService {
+    @Autowired
+    private DefaultExampleEntityService service;
 
-    /**
-     * Repository for the domain entities handled by the service.
-     */
-    private final ExampleEntityRepository repository;
+    public ITDefaultExampleEntityService() {
+        super();
+    }
 
-    @Override
-    public final PageIterable<PersistentExampleEntity>
-            getAll(final Pagination pagination, final Sort sort) {
-        final Pageable pageable;
-        final Page<PersistentExampleEntity> page;
+    @Test
+    @DisplayName("Returns all the entities")
+    public void testGetAllEntities() {
+        final Pagination                            pagination;
+        final Sort                                  sort;
+        final PageIterable<? extends ExampleEntity> result;
 
-        pageable = Paginations.toSpring(pagination, sort);
+        pagination = new DisabledPagination();
+        sort = new DisabledSort();
 
-        page = repository.findAll(pageable);
+        result = service.getAllEntities(pagination, sort);
 
-        return Paginations.fromSpring(page);
+        Assertions.assertEquals(30, IterableUtils.size(result));
     }
 
 }
