@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package ${package}.controller;
+package ${package}.error;
 
 import java.util.stream.Collectors;
 

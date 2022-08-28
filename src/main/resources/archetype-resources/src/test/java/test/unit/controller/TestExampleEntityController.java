@@ -113,7 +113,7 @@ public final class TestExampleEntityController {
         pageIterable.setContent(entities);
 
         Mockito
-            .when(service.getAllEntities(ArgumentMatchers.any(),
+            .when(service.getAll(ArgumentMatchers.any(),
                 ArgumentMatchers.any()))
             .thenReturn((PageIterable) pageIterable);
 

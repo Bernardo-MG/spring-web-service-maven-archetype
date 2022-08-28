@@ -52,7 +52,7 @@ public class ITDefaultExampleEntityService {
 
     @Test
     @DisplayName("Returns all the entities")
-    public void testGetAllEntities() {
+    public void testgetAll() {
         final Pagination                            pagination;
         final Sort                                  sort;
         final PageIterable<? extends ExampleEntity> result;
@@ -60,7 +60,7 @@ public class ITDefaultExampleEntityService {
         pagination = new DisabledPagination();
         sort = new DisabledSort();
 
-        result = service.getAllEntities(pagination, sort);
+        result = service.getAll(pagination, sort);
 
         Assertions.assertEquals(30, IterableUtils.size(result));
     }

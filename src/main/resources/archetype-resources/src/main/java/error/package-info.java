@@ -23,7 +23,7 @@
  */
 
 /**
- * Controller classes.
+ * Error handling classes.
  */
 
-package ${package}.controller;
+package ${package}.error;
