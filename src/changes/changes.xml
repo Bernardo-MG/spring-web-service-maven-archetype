@@ -40,5 +40,7 @@
             Using Spring dependencies BOM.
          </action>
       </release>
+      <release version="1.2.0" date="2022-08-28" description="">
+      </release>
    </body>
 </document>
