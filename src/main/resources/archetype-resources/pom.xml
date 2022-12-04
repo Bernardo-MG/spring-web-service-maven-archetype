@@ -177,16 +177,14 @@
       <!-- ============================================== -->
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
-      <caffeine.version>2.6.2</caffeine.version>
-      <guava.version>31.1-jre</guava.version>
+      <apache.commons.collections.version>4.4</apache.commons.collections.version>
       <hibernate.validator.version>5.4.3.Final</hibernate.validator.version>
       <hibernate.ehcache.version>5.6.10.Final</hibernate.ehcache.version>
-      <jackson.version>2.13.3</jackson.version>
-      <junit.jupiter.version>5.9.0</junit.jupiter.version>
-      <slf4j.version>1.7.36</slf4j.version>
-      <spring.boot.version>2.7.2</spring.boot.version>
-      <spring.data.version>2021.2.2</spring.data.version>
-      <spring.version>5.3.22</spring.version>
+      <jackson.version>2.14.1</jackson.version>
+      <junit.jupiter.version>5.9.1</junit.jupiter.version>
+      <spring.boot.version>2.7.6</spring.boot.version>
+      <spring.data.version>2022.0.0</spring.data.version>
+      <spring.version>5.3.24</spring.version>
       <springdoc.version>1.6.9</springdoc.version>
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
@@ -201,7 +199,7 @@
       <!-- ============================================== -->
       <!-- ================= MAVEN SITE ================= -->
       <!-- ============================================== -->
-      <site.skin.version>2.3.0</site.skin.version>
+      <site.skin.version>2.2.6</site.skin.version>
       <mavenURL>http://mvnrepository.com/artifact/${project.groupId}/${project.artifactId}</mavenURL>
       <githubArtifactURL><![CDATA[https://github.com/${repoUserId}?tab=packages&amp;repo_name=${project.artifactId}]]></githubArtifactURL>
    </properties>
@@ -408,8 +406,8 @@
       <!-- ============================================== -->
       <dependency>
          <!-- Servlet API -->
-         <groupId>javax.servlet</groupId>
-         <artifactId>javax.servlet-api</artifactId>
+         <groupId>jakarta.servlet</groupId>
+         <artifactId>jakarta.servlet-api</artifactId>
          <scope>provided</scope>
       </dependency>
       <!-- ============================================== -->
@@ -477,6 +475,14 @@
          <version>${springdoc.version}</version>
       </dependency>
       <!-- ============================================== -->
+      <!-- ============ APACHE COLLECTIONS ============== -->
+      <!-- ============================================== -->
+      <dependency>
+         <groupId>org.apache.commons</groupId>
+         <artifactId>commons-collections4</artifactId>
+         <version>${apache.commons.collections.version}</version>
+      </dependency>
+      <!-- ============================================== -->
       <!-- =========== VERSION ENFORCEMENT ============== -->
       <!-- ============================================== -->
       <dependency>
@@ -522,13 +528,6 @@
          <!-- Mockito -->
          <groupId>org.mockito</groupId>
          <artifactId>mockito-core</artifactId>
-         <scope>test</scope>
-      </dependency>
-      <dependency>
-         <!-- Guava -->
-         <groupId>com.google.guava</groupId>
-         <artifactId>guava</artifactId>
-         <version>${guava.version}</version>
          <scope>test</scope>
       </dependency>
       <dependency>
