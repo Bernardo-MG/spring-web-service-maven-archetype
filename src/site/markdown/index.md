@@ -1,4 +1,4 @@
-# An Archetype for Libraries
+# An Archetype for React Web Projects
 
 Archetypes act as templates for new Maven projects, taking care of the most tedious and repetitive tasks for the user, who can just begin coding a pre-configured project.
 
@@ -6,7 +6,9 @@ In this case this Archetype creates a generic Maven-based library which includes
 
 ## Features
 
-- [Archetype parent POM][parent-pom] used as parent POM.
+- Creates the base for a [Spring MVC][spring-mvc] project.
+- [Liquibase][liquibase] for database versioning.
+- [Archetype parent POM][parent-pom] and [Bernardo MG's Base POM][base-pom] used as parent POMs.
 - [Unit and integration test][tests] suites are run separatedly with the use of [JUnit][junit].
 - [Maven site for the project][site], using the [Docs Maven Skin][docs-skin], for creating a small documentation site.
 - [Javadocs][site-javadoc] included in the Maven site.
@@ -41,6 +43,8 @@ From the first moment the a new project is created all the usual Maven commands 
 [docs-skin]: https://github.com/Bernardo-MG/docs-maven-skin
 [example-project]: https://github.com/Bernardo-MG/spring-web-service-maven-archetype-example
 
+[liquibase]: http://www.liquibase.org/
+[spring-mvc]: https://spring.io/
 [junit]: http://junit.org
 
 [license]: ./license.html
