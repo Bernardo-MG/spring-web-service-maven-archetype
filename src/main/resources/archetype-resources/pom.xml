@@ -189,13 +189,16 @@
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
       <!-- ============================================== -->
-      <plugin.enforcer.version>3.0.0</plugin.enforcer.version>
       <plugin.spring.boot.version>${spring.boot.version}</plugin.spring.boot.version>
       <!-- ============================================== -->
       <!-- ============ PLUGIN CONFIGURATION ============ -->
       <!-- ============================================== -->
       <!-- Checkstyle customized rules file -->
       <checkstyle.config.location>${project.basedir}/src/config/checkstyle/checkstyle-rules.xml</checkstyle.config.location>
+      <!-- Excludes generated code for Checkstyle -->
+      <checkstyle.excludes>**/generated/**/*</checkstyle.excludes>
+      <!-- Exclusion patterns for SpotBugs -->
+      <spotbugs.excludeFilterFile>${project.basedir}/src/config/spotbugs/spotbugs-exclude.xml</spotbugs.excludeFilterFile>
       <!-- ============================================== -->
       <!-- ================= MAVEN SITE ================= -->
       <!-- ============================================== -->
@@ -378,6 +381,12 @@
          <!-- Hikari CP -->
          <groupId>com.zaxxer</groupId>
          <artifactId>HikariCP</artifactId>
+         <exclusions>
+            <exclusion>
+               <groupId>org.slf4j</groupId>
+               <artifactId>slf4j-api</artifactId>
+            </exclusion>
+         </exclusions>
       </dependency>
       <!-- ============================================== -->
       <!-- ==================== H2 ====================== -->
@@ -518,7 +527,7 @@
          <scope>test</scope>
          <exclusions>
             <exclusion>
-               <!-- JUnit 3 -->
+               <!-- JUnit -->
                <groupId>junit</groupId>
                <artifactId>junit</artifactId>
             </exclusion>
