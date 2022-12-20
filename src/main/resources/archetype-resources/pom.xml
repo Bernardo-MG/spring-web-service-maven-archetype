@@ -182,6 +182,7 @@
       <hibernate.ehcache.version>5.6.10.Final</hibernate.ehcache.version>
       <jackson.version>2.14.1</jackson.version>
       <junit.jupiter.version>5.9.1</junit.jupiter.version>
+      <snakeyaml.version>1.31</snakeyaml.version>
       <spring.boot.version>2.7.6</spring.boot.version>
       <spring.data.version>2022.0.0</spring.data.version>
       <spring.version>5.3.24</spring.version>
@@ -495,9 +496,10 @@
       <!-- =========== VERSION ENFORCEMENT ============== -->
       <!-- ============================================== -->
       <dependency>
-         <!-- Byte Buddy -->
-         <groupId>net.bytebuddy</groupId>
-         <artifactId>byte-buddy</artifactId>
+         <!-- SnakeYAML -->
+         <groupId>org.yaml</groupId>
+         <artifactId>snakeyaml</artifactId>
+         <version>${snakeyaml.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->
