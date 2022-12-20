@@ -38,7 +38,6 @@ import ${package}.pagination.argument.SortArgumentResolver;
  * Web configuration.
  *
  * @author Bernardo Mart&iacute;nez Garrido
- *
  */
 @Configuration
 public class WebConfiguration implements WebMvcConfigurer {
