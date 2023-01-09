@@ -40,7 +40,13 @@
             Using Spring dependencies BOM.
          </action>
       </release>
-      <release version="1.2.0" date="2022-08-28" description="">
+      <release version="1.1.2" date="2023-01-09" description="Updated dependencies">
+         <action dev="bmg" type="update">
+            Updated dependencies.
+         </action>
+         <action dev="bmg" type="update">
+            Updated Github workflow files.
+         </action>
       </release>
    </body>
 </document>
