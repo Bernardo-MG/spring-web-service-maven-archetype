@@ -24,40 +24,22 @@
 
 package ${package}.config;
 
-import java.util.List;
-
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import ${package}.pagination.argument.PaginationArgumentResolver;
-import ${package}.pagination.argument.SortArgumentResolver;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * Web configuration.
+ * Persistence configuration.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @Configuration
-public class WebConfiguration implements WebMvcConfigurer {
+@EnableTransactionManagement
+@EnableCaching
+public class PersistenceConfig {
 
-    /**
-     * Default constructor.
-     */
-    public WebConfiguration() {
+    public PersistenceConfig() {
         super();
-    }
-
-    @Override
-    public void addArgumentResolvers(final List<HandlerMethodArgumentResolver> argumentResolvers) {
-        argumentResolvers.add(new PaginationArgumentResolver());
-        argumentResolvers.add(new SortArgumentResolver());
-    }
-
-    @Override
-    public void addCorsMappings(final CorsRegistry registry) {
-        registry.addMapping("/**");
     }
 
 }

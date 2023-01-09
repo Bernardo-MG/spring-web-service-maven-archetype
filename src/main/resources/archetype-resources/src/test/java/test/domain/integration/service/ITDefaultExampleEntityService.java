@@ -24,6 +24,7 @@
 
 package ${package}.test.domain.integration.service;
 
+import org.apache.commons.collections4.IterableUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,7 +38,6 @@ import ${package}.pagination.model.PageIterable;
 import ${package}.pagination.model.Pagination;
 import ${package}.pagination.model.Sort;
 import ${package}.test.config.annotation.IntegrationTest;
-import com.google.common.collect.Iterables;
 
 @IntegrationTest
 @DisplayName("Default entity service")
@@ -62,7 +62,7 @@ public class ITDefaultExampleEntityService {
 
         result = service.getAll(pagination, sort);
 
-        Assertions.assertEquals(30, Iterables.size(result));
+        Assertions.assertEquals(30, IterableUtils.size(result));
     }
 
 }
