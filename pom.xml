@@ -29,7 +29,7 @@
 
    <name>Spring Web Service Maven Archetype</name>
    <description>A Maven Archetype to ease the creation of Spring web services.</description>
-   <url>https://www.github.com/bernardo-mg/spring-web-service-maven-archetype</url>
+   <url>https://github.com/bernardo-mg/spring-web-service-maven-archetype</url>
    <inceptionYear>2021</inceptionYear>
 
    <licenses>
